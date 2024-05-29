@@ -2,7 +2,7 @@
 controls Ableton-Live via OSC and Chataigne   
 .... coming soon ! (I am still working on this module !)
 
-To get this OSC-Module run correctly, you must first install and than activate [LiveOSC](https://github.com/ideoforms/AbletonOSC) in Ableton Live !!    
+To get this OSC-Module run correctly, you must first install  [LiveOSC](https://github.com/ideoforms/AbletonOSC) and than activate it in Ableton Live !!    
 
 Please contact me if you have demands or requests and any help is always welcome !!   
 Have Fun
