@@ -8,7 +8,7 @@ To get this OSC-Module run correctly, you must first install the free [LiveOSC](
 ### Actual Version is 1.0     
 Please note the following advices :   
 After changing the Number of shown Channels you must save the session (cmd-S) and than reload it (cmd-shift-O)    
-Channel Names, Faders and Meters are shown and noticed in the same order as they are VISIBLE and ORDERED in the Albeton-Live Session !! this means that after changing a channel's place you must reset and resync the Data in Chataigne; and if you use "Sub-Groups" the "channel-display" in Chataigne depends if the subgroup is deployed or not...
+Channel Names, Faders and Meters are shown and noticed in the same order as they are VISIBLE and arranged in the Albeton-Live Session !! this means that after changing a channel's place you must reset and resync the Data in Chataigne; and if you use "Sub-Groups" the "channel-display" in Chataigne depends if the subgroup is deployed or not...
 
 Please contact me if you have suggestions, demands or requests and any help is always welcome !!   
 Have Fun
