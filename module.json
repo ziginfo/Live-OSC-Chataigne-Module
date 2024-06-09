@@ -1,0 +1,324 @@
+{
+	"name": "Live OSC Advanced",
+	"type": "OSC",
+	"path": "Software",
+	
+	"version": "1.0",
+	"description": "Controls Live with Chataigne via OSC",
+	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
+	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
+	
+	"hasInput": true,
+	"hasOutput": true, 
+
+	"hideDefaultCommands": true,
+	"hideDefaultParameters": [
+		"colorSendMode",
+		"autoRange",
+		"autoFeedback",
+		"pass_through",
+		"input",
+		"outputs",
+		"useHierarchy",
+		"colorSendMode",
+		"booleanSendMode"
+		],
+	
+	"defaults": {
+	
+		"OSC Input": {
+			"localPort" : 11001 },
+			
+		"OSC Outputs": {
+			"OSC Output": {
+				"local" : false,
+				"remotePort" : 11000,
+				"listenToFeedback":false } }
+	},
+	
+	"parameters": { 
+	
+	"Advice":
+		{ "type": "String",
+			"description":"SaveReload the Session after changing this value !",
+			"default":"Save and Reload the Session after changing this value !" },
+				
+	"Number of Tracks":
+		{ "type": "Integer",
+			"description":"Reload the Project after changing this value !",
+			"min": 8 },
+					
+	"Auto Add":{"type":"Boolean"}
+	},
+	
+	"scripts": ["live.js"],
+	
+	"values":
+  		{  },
+	
+	"commands": {
+	
+	"Master Volume" : {
+			"menu" : "Track",
+			"callback" : "master_volume",
+			"parameters" : {
+					
+				"Fader Level": {
+					"type": "Float",
+					"default": 0.75, 
+					"min":0,
+					"max":1,
+					"useForMapping": true	}  } 
+			},
+		
+		"Track Volume" : {
+			"menu" : "Track",
+			"callback" : "volume",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":8,				
+					"useForMapping": true	}, 
+					
+				"Fader Level": {
+					"type": "Float",
+					"default": 0.75, 
+					"min":0,
+					"max":1,
+					"useForMapping": true	}  } 
+			},
+			
+		"Track Pan" : {
+			"menu" : "Track",
+			"callback" : "pan",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":8,
+					"useForMapping": true	}, 
+					
+				"Pan": {
+					"type": "Float",
+					"default": 0.5, 
+					"min":0,
+					"max":1,
+					"useForMapping": true	}  } 
+			},
+		
+		"Track Mute" : {
+			"menu" : "Track",
+			"callback" : "mute",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":8,
+					"useForMapping": true	} } 
+			},
+			
+		"Track Solo" : {
+			"menu" : "Track",
+			"callback" : "solo",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":8,
+					"useForMapping": true	} } 
+			},
+			
+		"Track Select" : {
+			"menu" : "Track",
+			"callback" : "select",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true	}	} 
+			},
+			
+		"Track Send" : {
+			"menu" : "Track",
+			"callback" : "send",
+			"parameters" : {
+						
+				"Track No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":8,				
+					"useForMapping": true	},
+					
+				"Send No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},  
+					
+				"Send Level": {
+					"type": "Float",
+					"default": 0.75, 
+					"min":0,
+					"max":1,
+					"useForMapping": true	} } 
+			},
+			
+		"Solo-Reset" : {
+			"menu" : "Track",
+			"callback" : "solo_reset"
+			},
+			
+		"Play" : {
+			"menu" : "PlayActions",
+			"callback" : "play"
+			},
+			
+		"Stop" : {
+			"menu" : "PlayActions",
+			"callback" : "stop"
+			},
+			
+		"Cycle" : {
+			"menu" : "PlayActions",
+			"callback" : "cycle",
+			"parameters" : {					
+				"On/Off": {
+					"type": "Boolean",
+					"default": 1, 
+					"min":0,
+					"max":1,
+					"useForMapping": true }  }
+			},
+			
+		"Rec" : {
+			"menu" : "PlayActions",
+			"callback" : "rec"
+			},
+			
+		"Click" : {
+			"menu" : "PlayActions",
+			"callback" : "click"
+			},
+			
+			
+		"Rewind" : {
+			"menu" : "PlayActions",
+			"callback" : "rewind"
+			},
+			
+		"Tap Tempo" : {
+			"menu" : "PlayActions",
+			"callback" : "taptempo"
+			},
+			
+		"New Audio Track" : {
+			"menu" : "Song Actions",
+			"callback" : "audio_track",
+			"parameters" : {		
+				"New Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+			},
+			
+		"New Midi Track" : {
+			"menu" : "Song Actions",
+			"callback" : "midi_track",
+			"parameters" : {		
+				"New Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+			},
+			
+		"New Aux Track" : {
+			"menu" : "Song Actions",
+			"callback" : "aux_track"
+			},
+			
+		"Add New Scene" : {
+			"menu" : "Song Actions",
+			"callback" : "new_scene",
+			"parameters" : {		
+				"New Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+				},
+				
+		"Duplicate Scene" : {
+			"menu" : "Song Actions",
+			"callback" : "duplicate_scene",
+			"parameters" : {		
+				"Scene ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+				},
+			
+		"Delete Scene" : {
+			"menu" : "Song Actions",
+			"callback" : "delete_scene",
+			"parameters" : {		
+				"Scene ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+				},
+	
+		"Prev Marker" : {
+			"menu" : "Markers",
+			"callback" : "prev_mark"
+			},
+			
+		"Next Marker" : {
+			"menu" : "Markers",
+			"callback" : "next_mark"
+			},
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+	
+
+		
+	
+		
+	
+		
+	}
+}
