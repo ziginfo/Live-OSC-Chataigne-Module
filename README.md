@@ -4,7 +4,7 @@ controls Ableton-Live via OSC and Chataigne
 Ableton-Live is quite complexe to remote...       
 this module is an "advanced" version of the basic Ableton-Live-Module which is already integrated in Chataigne
 
-To get this OSC-Module run correctly, you must first install the free [LiveOSC](https://github.com/ideoforms/AbletonOSC) and than activate it in Ableton Live !!
+To get this OSC-Module run correctly, you must first install the free [LiveOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!
     
 ### Actual Version is 1.0     
 Pleaso note the following advices :   
