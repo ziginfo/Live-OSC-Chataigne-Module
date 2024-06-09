@@ -1,5 +1,6 @@
 // ========================== VARS ===========================
-var chancount = local.parameters.numberOfTracks.get() ;
+var trackcount = local.parameters.numberOfTracks.get() ;
+var scenecount = local.parameters.numberOfClips.get() ;
 
 //====================================================================
 //			INITIAL FUNCTIONS 
@@ -7,9 +8,10 @@ var chancount = local.parameters.numberOfTracks.get() ;
 
 function init() {
 
-	local.send("/live/track/start_listen/volume", "*") ;
-	local.send("/live/track/start_listen/name", "*") ;
-	local.send("/live/track/get/output_meter_level", "*") ;
+
+//	local.send("/live/track/start_listen/volume", "*") ;
+//	local.send("/live/track/start_listen/name", "*") ;
+//	local.send("/live/track/get/output_meter_level", "*") ;
 	local.send("/live/song/get/tempo") ;
 	local.send("/live/track/stop_listen/output_meter_left", "*") ;
 	local.send("/live/track/stop_listen/output_meter_right", "*") ;
@@ -21,6 +23,9 @@ function init() {
 // 			CREATE CONTAINERS
 // =====================================================================
 
+Sync = local.values.addTrigger("Sync" , "Request values from Live !!" , false);
+Synclips = local.values.clips.addTrigger("Sync Clip Infos" , "Request Clip Infos from Live !!" , false);
+Resetclips = local.values.clips.addTrigger("Reset Clip Infos" , "Reset Clip Infos from Live !!" , false);
 Snap = local.values.addStringParameter("Selected Channel", "Shows Selected Channel Name","Selected Channel");
 //	activeCue = local.values.addStringParameter("Active Cue", "Shows Active Cue Name","Active Cue");
 //	nextCue = local.values.addStringParameter("Next Cue", "Shows Next Cue Name","Next Cue");
@@ -33,7 +38,7 @@ Snap = local.values.addStringParameter("Selected Channel", "Shows Selected Chann
 		label.setCollapsed(true);
 		label.addTrigger("Sync Labels", "Get Labels from Live" , false);
 		label.addTrigger("Reset Labels", "Reset All Labels" , false);	
-		for (var n = 1; n <= chancount; n++) {
+		for (var n = 1; n <= trackcount; n++) {
 			label.addStringParameter("Label "+n, "", ""); }
 			
 // Track Faders Container>>>>>>>>>>>>>>>>>>>>>		
@@ -41,26 +46,32 @@ Snap = local.values.addStringParameter("Selected Channel", "Shows Selected Chann
 		faders.setCollapsed(true);
 		faders.addTrigger("Sync Faders", "Get Fader Values from Live" , false);		
 		faders.addTrigger("Reset Values", "Reset All Values" , false);		
-		for (var n = 1; n <= chancount; n++) {
+		for (var n = 1; n <= trackcount; n++) {
 			var fade = faders.addFloatParameter("Fader "+n, "", 0, 0, 1);
 			fade.setAttribute("readonly" ,true);  }
 			
 // Channel Meters Container>>>>>>>>>>>>>>>>>>>>>		
 		meter = local.values.addContainer("Meters");
 		meter.setCollapsed(true);
-//		meter.addBoolParameter("Activate Meters", "Set the Meters ON" , false);	
-		for (var n = 1; n <= chancount; n++) {
+		meter.addTrigger("Activate Meters", "Set the Meters ON" , false);
+		meter.addTrigger("Stop Meters", "Set the Meters OFF" , false);	
+		for (var n = 1; n <= trackcount; n++) {
 			var met = meter.addFloatParameter("Track "+n, "", 0, 0, 1);
 			met.setAttribute("readonly" ,true);  
 			}
 			
-// Clips Container >>>>>>>>>>>>>>>>>>>>>>		
-		clip=local.values.addContainer("Clip Labels");
+// Clips Container >>>>>>>>>>>>>>>>>>>>>>
+
+		for (var n = 1; n <= trackcount; n++) {
+		lab = "Track "+n+" Clips" ;
+		clip=local.values.clips.addContainer(lab);
 		clip.setCollapsed(true);
 		clip.addTrigger("Sync Clip Labels", "Get Labels from Live" , false);
-		clip.addTrigger("Reset Clip Labels", "Reset All Labels" , false);	
-		for (var n = 1; n <= 8; n++) {
-			clip.addStringParameter("Clip "+n, "", ""); }
+//		clip.addTrigger("Reset Clip Labels", "Reset All Labels" , false);	
+		for (var m = 1; m <= scenecount; m++) {
+			var nam= "track"+n+"Clips" ;
+			add=local.values.clips.getChild(nam) ;
+			add.addStringParameter("Clip "+m, "", ""); } }
 			
 			
 }
@@ -80,31 +91,40 @@ function moduleParameterChanged(param) {
 
 function moduleValueChanged(value) {
   
-  	if (value.name == "syncGains"){ 
-  	local.send("/GlobalSnapshots/Refresh"); 
-  	local.send("/StatusPoll") ;  	}
+  	if (value.name == "syncClipInfos"){ 
+  	local.send("/live/track/get/clips/name", "0") ; }
+  	
+  	if (value.name == "sync"){ 
+  	local.send("/live/song/get/tempo") ; }
   	
   	if (value.name == "syncLabels"){ 
   	local.send("/live/track/start_listen/name", "*") ;}
   	
   	if (value.name == "syncFaders"){ 
-  	local.send("/live/track/start_listen/volume", "*"); 
-  	local.send("/live/track/start_listen/output_meter_level", "*") ;}
+  	local.send("/live/track/start_listen/volume", "*") ;  }
   	
-  	if (value.name == "syncMeters"){ 
-  	local.send("/live/track/start_listen/output_meter_level", "*"); }
-  	
+ 	if (value.name == "activateMeters"){ 
+ 	local.send("/live/track/start_listen/output_meter_level", "*"); }
+ 	if (value.name == "stopMeters"){ 
+ 	local.send("/live/track/stop_listen/output_meter_level", "*");
+ 	for (var n = 0; n < trackcount; n++) {
+	var no = n+1 ;
+	var child = "fader"+no ;
+	local.values.meters.getChild('Track'+no).set(0);
+	}  }
+	  	
   	if (value.name == "resetLabels"){ 
-  	for (var n = 0; n < chancount; n++) {
+  	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	local.values.trackLabels.getChild('Label'+no).set(""); 
 	} }
 		
 	if (value.name == "resetValues"){ 
-  	for (var n = 0; n < chancount; n++) {
+  	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	var child = "fader"+no ;
 	local.values.trackVolumes.getChild('Fader'+no).set(0);
+	local.values.meters.getChild('Track'+no).set(0);
 	} }
     
   
@@ -122,7 +142,7 @@ function oscEvent(address, args) {
 
 
 // >>> insert Track Labels	
-	for (var n = 0; n < chancount; n++) {
+	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	var addr = "/live/track/get/name" ;
 	if (address == addr)
@@ -131,17 +151,17 @@ function oscEvent(address, args) {
 	}
 
 // >>> insert Fader Volume	
-	for (var n = 0; n < chancount; n++) {
+	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	var addr = "/live/track/get/volume" ;
 	if (address == addr) 
 	{if (args[0] == n)
-	{local.values.trackVolumes.getChild("fader"+no).set(args[1]);} }
+	{local.values.trackVolumes.getChild("Fader"+no).set(args[1]);} }
 	}
 	
 // >>> insert Meter Value	
 
-	for (var n = 0; n < chancount; n++) {
+	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	var addr = "/live/track/get/output_meter_level" ;
 	if (address == "/live/track/get/output_meter_level")
@@ -154,19 +174,22 @@ function oscEvent(address, args) {
 //					KEEP ALIVE
 //========================================================================
 
-/*
+
 function update(deltaTime) {
 	var now = util.getTime();
 	if(now > TSSendAlive) {
-		TSSendAlive = now + 10;
+		TSSendAlive = now + 5;
 		keepAlive(); }
 }
 
  function keepAlive() {
-	local.send ("/live/track/start_listen/volume", "*");
+//	local.send ("/live/track/start_listen/volume", "*");
+//	local.send ("/live/track/get/volume", "*");
+//	local.send("/live/song/get/tempo") ;
+//	local.send("/live/track/start_listen/name", "*") ;
 	}
 
-*/
+
 // =====================================================================
 // 			GENERIC FUNCTIONS
 // =====================================================================

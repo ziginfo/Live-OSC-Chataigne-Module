@@ -38,23 +38,30 @@
 	
 	"parameters": { 
 	
-	"Advice":
-		{ "type": "String",
-			"description":"SaveReload the Session after changing this value !",
-			"default":"Save and Reload the Session after changing this value !" },
+		"Advice":
+			{ "type": "String",
+			"description":"Reload the Session after changing this value !",
+			"default":"Reload the Session after changing these values !" },
 				
-	"Number of Tracks":
-		{ "type": "Integer",
+		"Number of Tracks":
+			{ "type": "Integer",
 			"description":"Reload the Project after changing this value !",
 			"min": 8 },
-					
-	"Auto Add":{"type":"Boolean"}
+			
+		"Number of Clips":
+			{ "type": "Integer",
+			"description":"Reload the Project after changing this value !",
+			"min": 4 }
 	},
 	
 	"scripts": ["live.js"],
 	
-	"values":
-  		{  },
+	"values":  { 
+	
+		"Clips":
+		{ "type":"Container",
+			"collapsed":true}
+	 },
 	
 	"commands": {
 	
