@@ -50,7 +50,8 @@ Snap = local.values.addStringParameter("Selected Channel", "Shows Selected Chann
 		label.addTrigger("Reset Labels", "Reset All Labels" , false);	
 		for (var n = 1; n <= trackcount; n++) {
 			label.addStringParameter("Label "+n, "", "");
-			label.addColorParameter("Color "+n, "Description of my color param",[1,0,1]); }
+//			label.addColorParameter("Color "+n, "Description of my color param",[1,0,1]); 
+			}
 			
 // Track Faders Container>>>>>>>>>>>>>>>>>>>>>		
 		faders = local.values.addContainer("Track Volumes");
@@ -137,7 +138,7 @@ function moduleValueChanged(value) {
   	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
 	local.values.trackLabels.getChild('Label'+no).set("");
-	local.values.trackLabels.getChild('Color'+no).set(""); 
+//	local.values.trackLabels.getChild('Color'+no).set(""); 
 	} }
 		
 	if (value.name == "resetValues"){ 
@@ -175,6 +176,7 @@ function oscEvent(address, args) {
 	 {	local.values.trackLabels.getChild('Label'+no).set(args[1]); } }
 	}
 	
+/*
 // >>> insert Track Color	
 	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
@@ -184,6 +186,8 @@ function oscEvent(address, args) {
 	var col = "1,1,1"  ;
 	 {	local.values.trackLabels.getChild('Color'+no).set([0.5,1,0]); } }
 	}
+*/
+
 
 // >>> insert Fader Volume	
 	for (var n = 0; n < trackcount; n++) {
