@@ -11,12 +11,13 @@
 	"hasInput": true,
 	"hasOutput": true, 
 
-	"hideDefaultCommands": true,
+	"hideDefaultCommands": false,
 	"hideDefaultParameters": [
 		"colorSendMode",
 		"autoRange",
 		"autoFeedback",
 		"pass_through",
+		"autoAdd",
 		"input",
 		"outputs",
 		"useHierarchy",
@@ -48,7 +49,7 @@
 			"description":"Reload the Project after changing this value !",
 			"min": 8 },
 			
-		"Number of Clips":
+		"Number of Scenes":
 			{ "type": "Integer",
 			"description":"Reload the Project after changing this value !",
 			"min": 4 }
@@ -187,6 +188,66 @@
 			"callback" : "solo_reset"
 			},
 			
+		"Stop Track Clips" : {
+			"menu" : "Clips",
+			"callback" : "stop_clips",
+			"parameters" : {
+						
+				"Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+			
+		"Fire Clip" : {
+			"menu" : "Clips",
+			"callback" : "fire_clip",
+			"parameters" : {
+						
+				"Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+			
+		"Stop Clip" : {
+			"menu" : "Clips",
+			"callback" : "stop_clip",
+			"parameters" : {
+						
+				"Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+				
+		"Play Scene" : {
+			"menu" : "Clips",
+			"callback" : "play_scene",
+			"parameters" : {
+						
+				"Scene No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+			
 		"Play" : {
 			"menu" : "PlayActions",
 			"callback" : "play"
@@ -261,7 +322,7 @@
 			"menu" : "Song Actions",
 			"callback" : "new_scene",
 			"parameters" : {		
-				"New Track ID": {
+				"New Scene ID": {
 					"type": "Integer",
 					"default": 1, 
 					"min":0,				
@@ -289,6 +350,17 @@
 					"min":0,				
 					"useForMapping": true	} }
 				},
+				
+		"Set Temp" : {
+			"menu" : "Song Actions",
+			"callback" : "set_tempo",
+			"parameters" : {		
+				"New Track ID": {
+					"type": "Integer",
+					"default": 120, 
+					"min":30,				
+					"useForMapping": true	} }
+			},
 	
 		"Prev Marker" : {
 			"menu" : "Markers",
