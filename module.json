@@ -3,7 +3,7 @@
 	"type": "OSC",
 	"path": "Software",
 	
-	"version": "1.0",
+	"version": "1.2",
 	"description": "Controls Live with Chataigne via OSC",
 	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
 	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
@@ -27,6 +27,8 @@
 	
 	"defaults": {
 	
+		"autoAdd":false,
+		
 		"OSC Input": {
 			"localPort" : 11001 },
 			
@@ -39,6 +41,7 @@
 	
 	"parameters": { 
 	
+				 
 		"Advice":
 			{ "type": "String",
 			"description":"Reload the Session after changing this value !",
@@ -59,6 +62,10 @@
 	
 	"values":  { 
 	
+		"Tracks":
+		{ "type":"Container",
+			"collapsed":true},
+			 
 		"Clips":
 		{ "type":"Container",
 			"collapsed":true}
@@ -87,8 +94,7 @@
 				"Track No": {
 					"type": "Integer",
 					"default": 1, 
-					"min":1,
-					"max":8,				
+					"min":1,			
 					"useForMapping": true	}, 
 					
 				"Fader Level": {
@@ -108,13 +114,12 @@
 					"type": "Integer",
 					"default": 1, 
 					"min":1,
-					"max":8,
 					"useForMapping": true	}, 
 					
 				"Pan": {
 					"type": "Float",
 					"default": 0.5, 
-					"min":0,
+					"min":-1,
 					"max":1,
 					"useForMapping": true	}  } 
 			},
@@ -128,8 +133,14 @@
 					"type": "Integer",
 					"default": 1, 
 					"min":1,
-					"max":8,
-					"useForMapping": true	} } 
+					"useForMapping": true	},
+					
+				"Mute on/off": {
+					"type": "Boolean",
+					"default": 1, 
+					"min":0,
+					"max":1,
+					"useForMapping": true }  } 
 			},
 			
 		"Track Solo" : {
@@ -141,8 +152,14 @@
 					"type": "Integer",
 					"default": 1, 
 					"min":1,
-					"max":8,
-					"useForMapping": true	} } 
+					"useForMapping": true	},
+					
+					"Solo on/off": {
+					"type": "Boolean",
+					"default": 1, 
+					"min":0,
+					"max":1,
+					"useForMapping": true }  } 
 			},
 			
 		"Track Select" : {
@@ -165,8 +182,7 @@
 				"Track No": {
 					"type": "Integer",
 					"default": 1, 
-					"min":1,
-					"max":8,				
+					"min":1,									
 					"useForMapping": true	},
 					
 				"Send No": {
@@ -181,23 +197,6 @@
 					"min":0,
 					"max":1,
 					"useForMapping": true	} } 
-			},
-			
-		"Solo-Reset" : {
-			"menu" : "Track",
-			"callback" : "solo_reset"
-			},
-			
-		"Stop Track Clips" : {
-			"menu" : "Clips",
-			"callback" : "stop_clips",
-			"parameters" : {
-						
-				"Track ID": {
-					"type": "Integer",
-					"default": 1, 
-					"min":1,				
-					"useForMapping": true	} }
 			},
 			
 		"Fire Clip" : {
@@ -235,9 +234,26 @@
 					"min":1,				
 					"useForMapping": true	} }
 			},
+			
+		"Stop Track Clips" : {
+			"menu" : "Clips",
+			"callback" : "stop_track_clips",
+			"parameters" : {
+						
+				"Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+			
+			"Stop All Clips" : {
+			"menu" : "Clips",
+			"callback" : "stop_all_clips"
+			},
 				
 		"Play Scene" : {
-			"menu" : "Clips",
+			"menu" : "Scene",
 			"callback" : "play_scene",
 			"parameters" : {
 						
@@ -319,18 +335,21 @@
 			},
 			
 		"Add New Scene" : {
-			"menu" : "Song Actions",
+			"menu" : "Scene",
 			"callback" : "new_scene",
-			"parameters" : {		
-				"New Scene ID": {
+			"parameters" : {
+				"Advice :": {
+					"type": "String",
+					"default": "0 : adds scene at the end!" },		
+				"Insert New Scene ID": {
 					"type": "Integer",
-					"default": 1, 
-					"min":0,				
+					"default": 0, 
+					"min": 0,				
 					"useForMapping": true	} }
 				},
 				
 		"Duplicate Scene" : {
-			"menu" : "Song Actions",
+			"menu" : "Scene",
 			"callback" : "duplicate_scene",
 			"parameters" : {		
 				"Scene ID": {
@@ -341,7 +360,7 @@
 				},
 			
 		"Delete Scene" : {
-			"menu" : "Song Actions",
+			"menu" : "Scene",
 			"callback" : "delete_scene",
 			"parameters" : {		
 				"Scene ID": {
@@ -351,7 +370,7 @@
 					"useForMapping": true	} }
 				},
 				
-		"Set Temp" : {
+		"Set Tempo" : {
 			"menu" : "Song Actions",
 			"callback" : "set_tempo",
 			"parameters" : {		
