@@ -8,7 +8,7 @@ To get this OSC-Module run correctly, you must first donwload and install the fr
 The Module will be shown under the Menu "Software" and its name is "Live OSC Advanced".
     
 ### Actual Version is 1.2     
-##### Please read carefully following advices :   
+##### Please read carefully the following advices :   
 After changing the Number of shown Channels and Clips/Scenes you must save the Chataigne session (cmd-S) and than reload it (cmd-shift-O)    
 Channel Names, Faders and Meters are shown and noticed in the same order as they are VISIBLE and arranged in the Albeton-Live-Mixer !! This means that after changing a channel's place (move it to the left or the right) you must reset and resync the Data in Chataigne; and if you use "Sub-Groups" the "channel-display" in Chataigne depends if the subgroup is expanded or not...    
 and very important : when changing Track's Places in Ableton-Live's Mixer; the mixers internal Index is reset and some of Chataigne's Feedback-Values (especially Meter and Fader) will receive  false informations (=> Track-Index not up-to-date !!) !! To avoid this kind of confusion, the best way is to Save (cmd-S) the Ableton-Live-Session and reload it (File->Open Recent...) !! By loading a Live-Session its Index of the Mixer-Elements (Tracks etc) is automatically updated. And so Chataigne will receive the right Datas and put it in the right Cases in the Feedback-Containers !  
