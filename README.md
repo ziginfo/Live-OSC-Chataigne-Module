@@ -7,7 +7,7 @@ this module is an "advanced" version of the basic Ableton-Live-Module which is a
 To get this OSC-Module run correctly, you must first donwload and install the free [LiveOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!   
 The Module will be shown under the Menu "Software" and its name is "Live OSC Advanced".
     
-### Actual Version is 1.2     
+### Actual Version is 1.3     
 ##### Please read carefully the following advices :   
 After changing the Number of shown Channels and Clips/Scenes you must save the Chataigne session (cmd-S) and than reload it (cmd-shift-O)    
 Channel Names, Faders and Meters are shown and noticed in the same order as they are arranged in the Albeton-Live-Mixer !! This means that when you change a channel's place (move it to the left or the right) in the Live-Mixer, you must reset and resync the Data in Chataigne...    
