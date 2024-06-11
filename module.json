@@ -3,7 +3,7 @@
 	"type": "OSC",
 	"path": "Software",
 	
-	"version": "1.2",
+	"version": "1.3",
 	"description": "Controls Live with Chataigne via OSC",
 	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
 	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
@@ -329,6 +329,17 @@
 			"menu" : "PlayActions",
 			"callback" : "taptempo"
 			},
+		"Metronome" : {
+			"menu" : "PlayActions",
+			"callback" : "metronome",
+			"parameters" : {					
+				"On/Off": {
+					"type": "Boolean",
+					"default": 1, 
+					"min":0,
+					"max":1,
+					"useForMapping": true }  }
+			},	
 			
 		"New Audio Track" : {
 			"menu" : "Song Actions",
