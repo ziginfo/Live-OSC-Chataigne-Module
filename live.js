@@ -152,7 +152,10 @@ function moduleValueChanged(value) {
 		var mo = m + 1 ;
 		local.values.clips.getChild('Track'+no+'Clips').getChild('clip'+mo).set("");} } }
 		
-		
+// >>>>> Sync Scenes 	
+ 	if (value.name == "syncScenes"){ 
+  		local.send("/live/song/get/scene_names") ; }
+  		
 // >>>>> Stop All Feedback 	
  	if (value.name == "stopAllFeedback"){ 
   		local.send("/live/song/stop_listen/current_song_time") ;  
@@ -221,6 +224,12 @@ function moduleValueChanged(value) {
 		var no = n+1 ;
 		local.values.trackLabels.getChild('Label'+no).set("");
 //		local.values.trackLabels.getChild('Color'+no).set(""); 
+	} }
+// >>>>> Reset Scenes 	  	
+  	if (value.name == "resetScenes"){ 
+  		for (var n = 0; n < scenecount; n++) {
+		var no = n+1 ;
+		local.values.scenes.getChild('Scene'+no).set("");
 	} }
 // >>>>> Reset Track Values		
 	if (value.name == "resetValues"){ 
@@ -292,7 +301,14 @@ function oscEvent(address, args) {
 	 {	local.values.trackLabels.getChild('Color'+no).set([0.5,1,0]); } }
 	}
 */
-
+// >>> insert Track Labels	
+	for (var n = 0; n < scenecount; n++) {
+	var no = n+1 ;
+	var addr = "/live/song/get/scene_names" ;
+	if (address == addr){
+	var arg = args[n] ;
+	local.values.scenes.getChild("scene"+no).set(arg) ; }  }
+	
 // >>> insert Track Labels	
 	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
@@ -527,6 +543,12 @@ function stop_clip (track,clip) {
 track= track-1;
 clip= clip-1;
 local.send("/live/clip/stop", [track , clip]);
+}
+
+function rename_clip (track,clip, name) {
+track= track-1;
+clip= clip-1;
+local.send("/live/clip/set/name", [track , clip , name]);
 }
 
 //  =================  Song Actions  ===================

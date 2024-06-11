@@ -4,7 +4,7 @@
 	"path": "Software",
 	
 	"version": "1.2",
-	"description": "Controls Ableton Live with Chataigne via OSC",
+	"description": "Controls Live with Chataigne via OSC",
 	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
 	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
 	
@@ -247,9 +247,32 @@
 					"useForMapping": true	} }
 			},
 			
-			"Stop All Clips" : {
+		"Stop All Clips" : {
 			"menu" : "Clips",
 			"callback" : "stop_all_clips"
+			},
+			
+		"Rename Clip" : {
+			"menu" : "Clips",
+			"callback" : "rename_clip",
+			"parameters" : {
+						
+				"Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"New Name": {
+					"type": "String",
+					"default": "new name", 				
+					"useForMapping": true	} }
 			},
 				
 		"Play Scene" : {
