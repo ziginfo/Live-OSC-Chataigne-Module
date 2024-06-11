@@ -373,8 +373,6 @@ function oscEvent(address, args) {
 	var no = n+1 ;
 	var addr = "/live/track/get/color" ;
 	if (address == addr) {
-	local.values.tracks.test1.set(0.5,0.5,0.5);
-	local.values.tracks.test2.set(0.599,0.599,0.599);
 	if (args[0] == n){
 	var col = args[1] ;	
 	var items = util.getObjectProperties(colors);
