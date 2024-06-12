@@ -44,17 +44,17 @@
 				 
 		"Advice":
 			{ "type": "String",
-			"description":"Reload the Session after changing this value !",
+			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed these values !",
 			"default":"Reload the Session after changing these values !" },
 				
 		"Number of Tracks":
 			{ "type": "Integer",
-			"description":"Reload the Project after changing this value !",
+			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
 			"min": 8 },
 			
 		"Number of Scenes":
 			{ "type": "Integer",
-			"description":"Reload the Project after changing this value !",
+			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
 			"min": 4 }
 	},
 	
@@ -274,6 +274,18 @@
 					"default": "new name", 				
 					"useForMapping": true	} }
 			},
+			
+		"Select Scene" : {
+			"menu" : "Scene",
+			"callback" : "sel_scene",
+			"parameters" : {
+						
+				"Scene No": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
 				
 		"Play Scene" : {
 			"menu" : "Scene",
@@ -296,6 +308,11 @@
 			"menu" : "PlayActions",
 			"callback" : "stop"
 			},
+			
+		"Resume Playing" : {
+			"menu" : "PlayActions",
+			"callback" : "resume_play"
+			},	
 			
 		"Cycle" : {
 			"menu" : "PlayActions",
@@ -340,41 +357,14 @@
 					"max":1,
 					"useForMapping": true }  }
 			},	
-			
-		"New Audio Track" : {
-			"menu" : "Song Actions",
-			"callback" : "audio_track",
-			"parameters" : {		
-				"New Track ID": {
-					"type": "Integer",
-					"default": 1, 
-					"min":0,				
-					"useForMapping": true	} }
-			},
-			
-		"New Midi Track" : {
-			"menu" : "Song Actions",
-			"callback" : "midi_track",
-			"parameters" : {		
-				"New Track ID": {
-					"type": "Integer",
-					"default": 1, 
-					"min":0,				
-					"useForMapping": true	} }
-			},
-			
-		"New Aux Track" : {
-			"menu" : "Song Actions",
-			"callback" : "aux_track"
-			},
-			
+						
 		"Add New Scene" : {
 			"menu" : "Scene",
 			"callback" : "new_scene",
 			"parameters" : {
 				"Advice :": {
 					"type": "String",
-					"default": "0 : adds scene at the end!" },		
+					"default": "0 : adds Scene at the end!" },		
 				"Insert New Scene ID": {
 					"type": "Integer",
 					"default": 0, 
@@ -389,7 +379,7 @@
 				"Scene ID": {
 					"type": "Integer",
 					"default": 1, 
-					"min":0,				
+					"min":1,				
 					"useForMapping": true	} }
 				},
 			
@@ -400,12 +390,12 @@
 				"Scene ID": {
 					"type": "Integer",
 					"default": 1, 
-					"min":0,				
+					"min":1,				
 					"useForMapping": true	} }
 				},
 				
 		"Set Tempo" : {
-			"menu" : "Song Actions",
+			"menu" : "Song",
 			"callback" : "set_tempo",
 			"parameters" : {		
 				"New Track ID": {
@@ -416,20 +406,98 @@
 			},
 	
 		"Prev Marker" : {
-			"menu" : "Markers",
+			"menu" : "Song",
 			"callback" : "prev_mark"
 			},
 			
 		"Next Marker" : {
-			"menu" : "Markers",
+			"menu" : "Song",
 			"callback" : "next_mark"
 			},
 			
+		"Jump to Marker" : {
+			"menu" : "Song",
+			"callback" : "jump_mark",
+			"parameters" : {		
+				"Jump to Mark N°": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+			},
+			
+		"Jump by Beats" : {
+			"menu" : "Song",
+			"callback" : "jump_beats",
+			"parameters" : {		
+				"Beats Jumping": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+		
+		"Undo" : {
+			"menu" : "Actions",
+			"callback" : "undo"
+			},
 	
-	
-	
-	
-	
+		"Redo" : {
+			"menu" : "Actions",
+			"callback" : "redo"
+			},
+			
+		"Add New Track" : {
+			"menu" : "Actions",
+			"callback" : "create_track",
+			"parameters" : {
+				"Track Type" : {
+					"type":"Enum",
+					"options": {
+						"Audio Track" : "create_audio_track",
+						"Midi Track" : "create_midi_track" } },		
+				"New Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	},
+				"Advice": {
+					"type": "String",
+					"default": "0 : adds Track at the end!" } }
+			},
+
+			
+		"New Aux Track" : {
+			"menu" : "Actions",
+			"callback" : "aux_track"
+			},
+			
+		"Duplicate Track" : {
+			"menu" : "Actions",
+			"callback" : "dupli_track",
+			"parameters" : {	
+				"Set Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	} }
+			},	
+			
+		"Delete Track" : {
+			"menu" : "Actions",
+			"callback" : "del_track",
+			"parameters" : {
+				"Track Type" : {
+					"type":"Enum",
+					"options": {
+						"Track" : "delete_track",
+						"Aux Return" : "delete_return_track"} },		
+				"Set Track ID": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
 	
 	
 	

@@ -4,88 +4,20 @@
 
 var trackcount = local.parameters.numberOfTracks.get() ;
 var scenecount = local.parameters.numberOfScenes.get() ;
+var markercount = 12 ;
+var mark = [] ;
+var id ;
 
 var trackItems = {
 	"nam"	: ["Label", "s", "label"],
 	"fad" : ["Fader", "f","fader"],
 	"pan" : ["Pan", "fp","pan"],
 	"mute" : ["Mute", "b","mute"],
-	"eq" : ["EQ", "b","eq"],
-	"dyn" : ["Dyn", "b","dyn"],
-	"locut" : ["LoCut", "b","loCut"]};
+	"eq" : ["EQ", "b","eq"] };
 
 
 var colors = { 
-"1" : [ "32192"     , "0.000" , "0.490 " , "0.753" ]  , 
-"2" : [ "49071"     , "0.000" , "0.749 " , "0.686" ]  , 
-"3" : [ "695438"    , "0.039" , "0.612 " , "0.557" ]  , 
-"4" : [ "1090798"   , "0.063" , "0.643 " , "0.933" ]  , 
-"5" : [ "1698303"   , "0.098" , "0.914 " , "1.000" ]  , 
-"6" : [ "1716118"   , "0.102" , "0.184 " , "0.588" ]  , 
-"7" : [ "1769263"   , "0.102" , "1.000 " , "0.184" ]  , 
-"8" : [ "2319236"   , "0.137" , "0.388 " , "0.518" ]  , 
-"9" : [ "2490280"   , "0.145" , "1.000 " , "0.659" ]  , 
-"10" : [ "3101346"  , "0.184" , "0.322 " , "0.635" ]  , 
-"11" : [ "3947580"  , "0.235" , "0.235 " , "0.235" ]  , 
-"12" : [ "4047616"  , "0.239" , "0.765 " , "0.000" ]  , 
-"13" : [ "5480241"  , "0.325" , "0.624 " , "0.192" ]  , 
-"14" : [ "5538020"  , "0.329" , "0.502 " , "0.894" ]  , 
-"15" : [ "6094824"  , "0.361" , "1.000 " , "0.910" ]  , 
-"16" : [ "6441901"  , "0.384" , "0.294 " , "0.678" ]  , 
-"17" : [ "7491393"  , "0.447" , "0.310 " , "0.255" ]  , 
-"18" : [ "8092539"  , "0.482" , "0.482 " , "0.482" ]  , 
-"19" : [ "8237133"  , "0.490" , "0.690 " , "0.302" ]  , 
-"20" : [ "8623052"  , "0.514" , "0.576 " , "0.800" ]  , 
-"21" : [ "8754719"  , "0.522" , "0.588 " , "0.122" ]  , 
-"22" : [ "8758722"  , "0.522" , "0.647 " , "0.761" ]  , 
-"23" : [ "8912743"  , "0.529" , "1.000 " , "0.404" ]  , 
-"24" : [ "8940772"  , "0.533" , "0.424 " , "0.894" ]  , 
-"25" : [ "8962746"  , "0.533" , "0.761 " , "0.729" ]  , 
-"26" : [ "9160191"  , "0.545" , "0.773 " , "1.000" ]  , 
-"27" : [ "9611263"  , "0.573" , "0.655 " , "1.000" ]  , 
-"28" : [ "10056267" , "0.600" , "0.447 " , "0.294" ]  , 
-"29" : [ "10060650" , "0.600" , "0.514 " , "0.416" ]  , 
-"30" : [ "10204100" , "0.608" , "0.702 " , "0.769" ]  , 
-"31" : [ "10208397" , "0.608" , "0.769 " , "0.553" ]  , 
-"32" : [ "10701741" , "0.639" , "0.294 " , "0.678" ]  , 
-"33" : [ "10851765" , "0.647" , "0.584 " , "0.710" ]  , 
-"34" : [ "10927616" , "0.651" , "0.745 " , "0.000" ]  , 
-"35" : [ "11096369" , "0.663" , "0.318 " , "0.192" ]  , 
-"36" : [ "11119017" , "0.663" , "0.663 " , "0.663" ]  , 
-"37" : [ "11442405" , "0.682" , "0.596 " , "0.898" ]  , 
-"38" : [ "11481907" , "0.686" , "0.200 " , "0.200" ]  , 
-"39" : [ "11958214" , "0.714" , "0.467 " , "0.776" ]  , 
-"40" : [ "12026454" , "0.718" , "0.510 " , "0.337" ]  , 
-"41" : [ "12173795" , "0.725" , "0.757 " , "0.890" ]  , 
-"42" : [ "12243060" , "0.729" , "0.816 " , "0.455" ]  , 
-"43" : [ "12349846" , "0.737" , "0.443 " , "0.588" ]  , 
-"44" : [ "12558270" , "0.749" , "0.624 " , "0.745" ]  , 
-"45" : [ "12565097" , "0.749" , "0.729 " , "0.412" ]  , 
-"46" : [ "12581632" , "0.749" , "0.984 " , "0.000" ]  , 
-"47" : [ "13013643" , "0.776" , "0.573 " , "0.545" ]  , 
-"48" : [ "13381230" , "0.800" , "0.180 " , "0.431" ]  , 
-"49" : [ "13408551" , "0.800" , "0.600 " , "0.153" ]  , 
-"50" : [ "13482980" , "0.804" , "0.733 " , "0.894" ]  , 
-"51" : [ "13496824" , "0.804" , "0.945 " , "0.973" ]  , 
-"52" : [ "13684944" , "0.816" , "0.816 " , "0.816" ]  , 
-"53" : [ "13821080" , "0.824" , "0.894 " , "0.596" ]  , 
-"54" : [ "13872497" , "0.827" , "0.678 " , "0.443" ]  , 
-"55" : [ "13958625" , "0.831" , "0.992 " , "0.882" ]  , 
-"56" : [ "14183652" , "0.847" , "0.424 " , "0.894" ]  , 
-"57" : [ "14402304" , "0.859" , "0.765 " , "0.000" ]  , 
-"58" : [ "14837594" , "0.886" , "0.404 " , "0.353" ]  , 
-"59" : [ "15029152" , "0.898" , "0.325 " , "0.627" ]  , 
-"60" : [ "15064289" , "0.898" , "0.863 " , "0.882" ]  , 
-"61" : [ "15597486" , "0.929" , "1.000 " , "0.682" ]  , 
-"62" : [ "16149507" , "0.965" , "0.424 " , "0.012" ]  , 
-"63" : [ "16249980" , "0.969" , "0.957 " , "0.486" ]  , 
-"64" : [ "16725558" , "1.000" , "0.212 " , "0.212" ]  , 
-"65" : [ "16726484" , "1.000" , "0.224 " , "0.831" ]  , 
-"66" : [ "16749734" , "1.000" , "0.580 " , "0.651" ]  , 
-"67" : [ "16753524" , "1.000" , "0.639 " , "0.455" ]  , 
-"68" : [ "16753961" , "1.000" , "0.647 " , "0.161" ]  , 
-"69" : [ "16773172" , "1.000" , "0.941 " , "0.204" ]  , 
-"70" : [ "16777215" , "1.000" , "1.000 " , "1.000" ] };
+"1" : ["32192","0.000","0.490 ","0.753"],"2" : ["49071","0.000","0.749 ","0.686"],"3" : ["695438","0.039","0.612 ","0.557"],"4" : ["1090798","0.063","0.643 ","0.933"],"5" : ["1698303","0.098","0.914 ","1.000"],"6" : ["1716118","0.102","0.184 ","0.588"],"7" : ["1769263","0.102","1.000 ","0.184"],"8" : ["2319236","0.137","0.388 ","0.518"],"9" : ["2490280","0.145","1.000 ","0.659"],"10" : ["3101346","0.184","0.322 ","0.635"],"11" : ["3947580","0.235","0.235 ","0.235"],"12" : ["4047616","0.239","0.765 ","0.000"],"13" : ["5480241","0.325","0.624 ","0.192"],"14" : ["5538020","0.329","0.502 ","0.894"],"15" : ["6094824","0.361","1.000 ","0.910"],"16" : ["6441901","0.384","0.294 ","0.678"],"17" : ["7491393","0.447","0.310 ","0.255"],"18" : ["8092539","0.482","0.482 ","0.482"],"19" : ["8237133","0.490","0.690 ","0.302"],"20" : ["8623052","0.514","0.576 ","0.800"],"21" : ["8754719","0.522","0.588 ","0.122"],"22" : ["8758722","0.522","0.647 ","0.761"],"23" : ["8912743","0.529","1.000 ","0.404"],"24" : ["8940772","0.533","0.424 ","0.894"],"25" : ["8962746","0.533","0.761 ","0.729"],"26" : ["9160191","0.545","0.773 ","1.000"],"27" : ["9611263","0.573","0.655 ","1.000"],"28" : ["10056267","0.600","0.447 ","0.294"],"29" : ["10060650","0.600","0.514 ","0.416"],"30" : ["10204100","0.608","0.702 ","0.769"],"31" : ["10208397","0.608","0.769 ","0.553"],"32" : ["10701741","0.639","0.294 ","0.678"],"33" : ["10851765","0.647","0.584 ","0.710"],"34" : ["10927616","0.651","0.745 ","0.000"],"35" : ["11096369","0.663","0.318 ","0.192"],"36" : ["11119017","0.663","0.663 ","0.663"],"37" : ["11442405","0.682","0.596 ","0.898"],"38" : ["11481907","0.686","0.200 ","0.200"],"39" : ["11958214","0.714","0.467 ","0.776"],"40" : ["12026454","0.718","0.510 ","0.337"],"41" : ["12173795","0.725","0.757 ","0.890"],"42" : ["12243060","0.729","0.816 ","0.455"],"43" : ["12349846","0.737","0.443 ","0.588"],"44" : ["12558270","0.749","0.624 ","0.745"],"45" : ["12565097","0.749","0.729 ","0.412"],"46" : ["12581632","0.749","0.984 ","0.000"],"47" : ["13013643","0.776","0.573 ","0.545"],"48" : ["13381230","0.800","0.180 ","0.431"],"49" : ["13408551","0.800","0.600 ","0.153"],"50" : ["13482980","0.804","0.733 ","0.894"],"51" : ["13496824","0.804","0.945 ","0.973"],"52" : ["13684944","0.816","0.816 ","0.816"],"53" : ["13821080","0.824","0.894 ","0.596"],"54" : ["13872497","0.827","0.678 ","0.443"],"55" : ["13958625","0.831","0.992 ","0.882"],"56" : ["14183652","0.847","0.424 ","0.894"],"57" : ["14402304","0.859","0.765 ","0.000"],"58" : ["14837594","0.886","0.404 ","0.353"],"59" : ["15029152","0.898","0.325 ","0.627"],"60" : ["15064289","0.898","0.863 ","0.882"],"61" : ["15597486","0.929","1.000 ","0.682"],"62" : ["16149507","0.965","0.424 ","0.012"],"63" : ["16249980","0.969","0.957 ","0.486"],"64" : ["16725558","1.000","0.212 ","0.212"],"65" : ["16726484","1.000","0.224 ","0.831"],"66" : ["16749734","1.000","0.580 ","0.651"],"67" : ["16753524","1.000","0.639 ","0.455"],"68" : ["16753961","1.000","0.647 ","0.161"],"69" : ["16773172","1.000","0.941 ","0.204"],"70" : ["16777215","1.000","1.000 ","1.000"] };
 
 //====================================================================
 //			INITIAL FUNCTIONS 
@@ -102,10 +34,10 @@ function init() {
 	syncClips = local.values.clips.addTrigger("Sync Clip Infos" , "Request Clip Infos from Live !!" , false);
 	resetClips = local.values.clips.addTrigger("Reset Clip Infos" , "Reset Clip Infos from Live !!" , false);
 	selTrack = local.values.addStringParameter("Selected Track", "Shows Selected Track Name","Selected Track");
-//	selScene = local.values.addStringParameter("Selected Scene", "Shows Selected Scene Name","Selected Scene");
-	tempo = local.values.addFloatParameter("Tempo", "Shows the Temp en BPM", 120, 30, 400);
+	selScene = local.values.addStringParameter("Selected Scene", "Shows Selected Scene Name","Selected Scene");
+	tempo = local.values.addFloatParameter("Tempo", "Shows the Tempo en BPM", 120, 30, 400);
 	tempo.setAttribute("ui", "label") ;
-	setTempo = local.values.addTrigger("Set New Tempo" , "Set Tempo" , false);
+	setTempo = local.values.addTrigger("Set New Tempo" , "Set the New Tempo to the Song !" , false);
 //	metersOn = local.values.addTrigger("Activate Meters" , "Request values from Live !!" , false);
 //	metersOff = local.values.addTrigger("Stop Meters" , "Stop All Feedback" , false);
 	songtimeOff = local.values.addTrigger("Stop Songtime" , "Stop Songtime Feedback" , false);
@@ -118,8 +50,8 @@ function init() {
 		trac.setCollapsed(true);
 		trac.addColorParameter("Color", "Color of Track",[0,0,0]);
 		trac.addStringParameter("Label", "", "");
-		var read=trac.addFloatParameter("Meter", "", 0, 0, 1);
-			read.setAttribute("readonly" ,true);
+//		var read=trac.addFloatParameter("Meter", "", 0, 0, 1);
+//			read.setAttribute("readonly" ,true);
 		var read=trac.addFloatParameter("Fader", "", 0, 0, 1);
 			read.setAttribute("readonly" ,true);
 		var read=trac.addFloatParameter("Pan","", 0 , -1, 1);
@@ -143,6 +75,7 @@ function init() {
 		for (var m = 1; m <= scenecount; m++) {
 			var nam= "track"+n+"Clips" ;
 			add=local.values.clips.getChild(nam) ;
+//			add.addColorParameter("Color "+m, "Shows the Clip Color",[1,0,1]);
 			add.addStringParameter("Clip "+m, "", ""); } }
 			
 //Scenes Labels Container >>>>>>>>>>>>>>>>>>>>>>		
@@ -152,6 +85,16 @@ function init() {
 		scene.addTrigger("Reset Scenes", "Reset All Labels" , false);	
 		for (var n = 1; n <= scenecount; n++) {
 			scene.addStringParameter("Scene "+n, "", "");  }
+
+/*			
+//Markers Container >>>>>>>>>>>>>>>>>>>>>>		
+		mark=local.values.addContainer("Markers");
+		mark.setCollapsed(true);
+		mark.addTrigger("Sync Markers", "Get Labels from Live" , false);
+		mark.addTrigger("Reset Values", "Reset All Labels" , false);	
+		for (var n = 1; n <= markercount; n++) {
+			mark.addStringParameter("Marker "+n, "", "");  }
+*/
 			
 //Track Labels Container >>>>>>>>>>>>>>>>>>>>>>		
 		label=local.values.addContainer("Track Labels");
@@ -159,9 +102,8 @@ function init() {
 		label.addTrigger("Sync Labels", "Get Labels from Live" , false);
 		label.addTrigger("Reset Labels", "Reset All Labels" , false);	
 		for (var n = 1; n <= trackcount; n++) {
-			label.addStringParameter("Label "+n, "", "");
-//			label.addColorParameter("Color "+n, "Description of my color param",[1,0,1]); 
-			}
+//			label.addColorParameter("Color "+n, "Shows the Clip Color",[1,0,1]);
+			label.addStringParameter("Label "+n, "", "");  }
 			
 // Track Faders Container>>>>>>>>>>>>>>>>>>>>>		
 		faders = local.values.addContainer("Track Volumes");
@@ -188,6 +130,7 @@ function init() {
 		info.addTrigger("Sync All", "Synchronise Infos" , false);
 //		info.addTrigger("Reset Infos", "Reset Infos" , false);	
 		info.addStringParameter("Project Name", "","");
+		info.addBoolParameter("Song is Playing", "Shows if the Song is Playing or not",false);
 		info.addTrigger("Stop Songtime", "", false);
 		info.addIntParameter("Song Time Measure", "Measure", 0);
 		info.addIntParameter("Song Time Beats", "Beats", 0);
@@ -197,8 +140,8 @@ function init() {
 			read.setAttribute("readonly" ,true);
 			var read = info.addIntParameter("All Scenes", "All Tracks",1);
 			read.setAttribute("readonly" ,true);
-		info.addTrigger("Update Chataigne Settings", "", false);
-		info.addStringParameter("Advice", "Reload the Session after Update!", "Reload the Session after Update!");
+		info.addTrigger("Update Chataigne Settings", "This Trigger will set the Number of shown Tracks and Scenes in the Values-Tab to the number shown above - that is the actual used number of Tracks and Scenes in the Ableton-Live-Session !!", false);
+		info.addStringParameter("Advice", "Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed thess values !", "Save and Reload the Session after Update!");
 			
 }
 
@@ -232,6 +175,10 @@ function moduleValueChanged(value) {
  	if (value.name == "syncScenes"){ 
   		local.send("/live/song/get/scene_names") ; }
   		
+// >>>>> Sync Markers 	
+ 	if (value.name == "syncMarkers"){ 
+  		local.send("/live/song/get/cue_points") ; } 
+  		 		
 // >>>>> Stop All Feedback 	
  	if (value.name == "stopAllFeedback"){ 
   		local.send("/live/song/stop_listen/beat") ;  
@@ -257,6 +204,7 @@ function moduleValueChanged(value) {
   		local.send("/live/track/start_listen/arm", "*") ;
   		local.send("/live/view/start_listen/selected_track") ;
   		local.send("/live/view/start_listen/selected_scene") ;
+  		local.send("/live/song/start_listen/is_playing") ;
 		local.send("/live/song/start_listen/beat");
 		for (var n = 0; n < trackcount; n++) {
 		local.send("/live/track/get/is_grouped", n); } 
@@ -338,25 +286,41 @@ function moduleValueChanged(value) {
 //============================================================
 
 function oscEvent(address, args) {
-	
+
+// >>> Song is Playing ??
+ 	if (address == "/live/song/get/is_playing") {
+ 		local.values.infos.songIsPlaying.set(args[0]);}	
+ 		
 // >>> Tempo
  	if (address == "/live/song/get/tempo") {
  		local.values.tempo.set(args[0]);
  		local.values.infos.tempo.set(args[0]);}
+ 		
 // >>> Selected Track
  	if (address == "/live/view/get/selected_track") {
  		local.send("/live/track/get/name",args[0]); }
  	if (address == "/live/track/get/name") {
  		local.values.selectedTrack.set(args[1]);}
+ 		
+// >>> Selected Scene
+ 	if (address == "/live/view/get/selected_scene") {
+ 		id = args[0];
+ 		local.send("/live/song/get/scene_names");}
+ 		if (address == "/live/song/get/scene_names") {
+ 		var no = id + 1 ;
+ 		var nam = ""+no+" - "+args[id] ;
+ 		local.values.selectedScene.set(nam);
+ 		 }
+ 	
 
 // >>> Song Time 	
  	if (address == "/live/song/get/beat") {
- 		var args = args[0] +1 ;
-		var meas = (args +3) / 4 ;
-		var compte = Math.round(meas * 4) ;
-		var beats = (meas * 4)  - args ;  
+ 		var beats = args[0] + 1  ;
+		var meas = (args[0] + 4) / 4 ;
+//		var calc = local.values.infos.songTimeMeasure.get()  ;
+//		beats =  beats - ((calc - 1) * 4);  
 		local.values.infos.songTimeMeasure.set(meas);
-		local.values.infos.songTimeBeats.set(args);}
+		local.values.infos.songTimeBeats.set(beats);}
  	
 // >>> Number of Scenes
  	if (address == "/live/song/get/num_scenes") {
@@ -379,19 +343,29 @@ function oscEvent(address, args) {
 	var val3 = colors[items[3]][0] ;
 	for (var c = 0; c < items.length; c++) {
 	if (colors[items[c]][0] == col) {
-	var val1 = colors[items[c]][1] ;
-	var val2 = colors[items[c]][2] ;
-	var val3 = colors[items[c]][3] ;
-	local.values.tracks.getChild('Track'+no).color.set(val1,val2,val3);
+	var r = colors[items[c]][1] ;
+	var g = colors[items[c]][2] ;
+	var b = colors[items[c]][3] ;
+	local.values.tracks.getChild('Track'+no).color.set(r,g,b);
 	}  } } } }
 
-// >>> insert Track Labels	
+// >>> insert Scene Labels	
 	for (var n = 0; n < scenecount; n++) {
 	var no = n+1 ;
 	var addr = "/live/song/get/scene_names" ;
 	if (address == addr){
 	var arg = args[n] ;
 	local.values.scenes.getChild("scene"+no).set(arg) ; }  }
+
+/*	
+// >>> insert Marker Labels	
+	for (var n = 0; n < markercount; n++) {
+	var no = n+1 ;
+	var addr = "/live/song/get/cue_points" ;
+	if (address == addr){
+	var mark = args[n];
+	local.values.markers.getChild("marker"+no).set(mark) ; }  }
+*/
 	
 // >>> insert Track Labels	
 	for (var n = 0; n < trackcount; n++) {
@@ -458,8 +432,8 @@ function oscEvent(address, args) {
 	if (address == "/live/track/get/output_meter_level")
 	{if (args[0] == n)
 	{	local.values.meters.getChild("track"+no).set(args[1]);
-		local.values.tracks.getChild('Track'+no).meter.set(args[1]);} }
-	}
+//		local.values.tracks.getChild('Track'+no).meter.set(args[1]);
+	} } }
 	
 // >>> insert Clip Names	
 	for (var n = 0; n < trackcount; n++) {	
@@ -487,6 +461,7 @@ function update(deltaTime) {
 }
 
  function keepAlive() {
+// 		local.send("/live/song/get/is_playing") ;
 	}
 
 // =====================================================================
@@ -525,7 +500,6 @@ function solo(no, val) {
 function select(no) {
 no = no-1 ;
 	local.send("/live/view/set/selected_track", no);
-
 }
 
 function send(no, send, val){
@@ -540,6 +514,10 @@ function play() {
 
 function stop() {
 	local.send("/live/song/stop_playing");
+}
+
+function resume_play() {
+	local.send("/live/song/continue_playing");
 }
 
 function cycle(val) {
@@ -605,6 +583,11 @@ function fx_bypass (no, fx, val) {
 
 //  =================  Clips and Scenes ===================
 
+function sel_scene (no) {
+no= no-1;
+local.send("/live/view/set/selected_scene", no ) ;
+}
+
 function play_scene (no) {
 no= no-1;
 local.send("/live/view/set/selected_scene", no ) ;
@@ -640,19 +623,6 @@ local.send("/live/clip/set/name", [track , clip , name]);
 
 //  =================  Song Actions  ===================
 
-function audio_track (no) {
-no= no-1;
-local.send("/live/song/create_audio_track", no);
-}
-function midi_track (no) {
-no= no-1;
-local.send("/live/song/create_midi_track", no);
-}
-
-function aux_track () {
-local.send("/live/song/create_return_track");
-}
-
 function new_scene (text,no) {
  no= no-1;
 local.send("/live/song/create_scene", no);
@@ -680,5 +650,43 @@ local.send("/live/song/jump_to_prev_cue");
 
 function next_mark () {
 local.send("/live/song/jump_to_next_cue");
+}
+
+function jump_mark (val) {
+val = val - 1 ;
+local.send("/live/song/cue_point/jump", val);
+}
+
+function jump_beats (val) {
+local.send("/live/song/jump_by", val);
+}
+
+//  =================  Actions  ===================
+
+function undo (val) {
+local.send("/live/song/undo");
+}
+
+function redo (val) {
+local.send("/live/song/redo");
+}
+
+function create_track (track, no) {
+no= no-1;
+local.send("/live/song/"+track, no);
+}
+
+function aux_track () {
+local.send("/live/song/create_return_track");
+}
+
+function dupli_track ( no) {
+no= no-1;
+local.send("/live/song/duplicate_track", no);
+}
+
+function del_track (track, no) {
+no= no-1;
+local.send("/live/song/"+track, no);
 }
 
