@@ -19,7 +19,7 @@ It is important to know : when changing/moving Track's Places in Ableton-Live's 
 
 Please keep in mind that Chataigne and Abelton-Live can eventually slow down, when you are requesting too much Feedback ! Especially "Showtime" and "Metering" creates a huge and continous Data-Traffic!! So try to use only what you really need and deactivate what is less important ! It might be helpfull to enable incomind data logging to see what happens !
 
-You can set the number of shown Tracks (min = 8) and the number of shown Scenes (Clips -> min = 4) ! In the "Infos Container" and after "Syncing" you will also see the actual number of available and used Tracks and Scenes in the actual connected Live-Session !   
+You can set the number of shown Tracks (min = 8) and the number of shown Scenes (Clips -> min = 4) ! In the "Infos Container" and after "Syncing" you will also see the actual number of available and used Tracks and Scenes for the actual connected Live-Session !   
 There is a SyncButton (called "Update Chataigne Settings") to automatically adjust the  Chataigne's Tracks- and Scenes-Number to your Live-Mixer-Session-Settings !   
 
 This module will grow up with more features.    
