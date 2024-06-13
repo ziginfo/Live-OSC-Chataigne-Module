@@ -8,7 +8,7 @@ The Chataigne Module will be shown under the Menu "Software" and its name is "Li
 This module is an extended "advanced" version of the basic Ableton-Live-Module which is already integrated in Chataigne . I wrote this extended script to have more Control on Ableton Live and getting more Feedback from the DAW. If you don't need all these "full" features use the basic module instead. It has much less Data-Traffic and so it'll be much faster, especially when using many other modules and mappings in your Chataigne Project.....
 
 This Advanced module is still in developpement and I could add some more features and actions if needed. Just contact me for that ! Ableton-Live is quite complexe to remote and there are hundreds of possible Remote Actions and Feedback.   
-BUT : this module is based on an Python library that has been written by another person :  [ideoforms](https://github.com/ideoforms)....   So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
+BUT : this module is based on an Python library that has been written by another person :  [ideoforms](https://github.com/ideoforms) .  So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
 for example it is still not possible to "fire" Scenes by OSC-remote. Many other users requested this feature and hopefully, ideoforms will add it in the future.       
     
 ### Actual Version is 1.3     
