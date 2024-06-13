@@ -8,6 +8,8 @@ var markercount = 12 ;
 var mark = [] ;
 var id ;
 
+var advices = ["When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" , "Save and Reload the Session after Update!"] ;
+
 var trackItems = {
 	"nam"	: ["Label", "s", "label"],
 	"fad" : ["Fader", "f","fader"],
@@ -41,7 +43,7 @@ function init() {
 //	metersOn = local.values.addTrigger("Activate Meters" , "Request values from Live !!" , false);
 //	metersOff = local.values.addTrigger("Stop Meters" , "Stop All Feedback" , false);
 	songtimeOff = local.values.addTrigger("Stop Songtime" , "Stop Songtime Feedback" , false);
-	
+		
 // Track Items Container >>>>>>>>>>>>>>>>>>>>>>
 		local.values.tracks.addTrigger("Sync All" , "Request Track Infos from Live !!" , false);
 		local.values.tracks.addTrigger("Reset Track Infos" , "Reset Track Infos from Live !!" , false);		
@@ -149,7 +151,14 @@ function init() {
 // 			PARAM CHANGES
 // =====================================================================
 
-function moduleParameterChanged(param) {  
+function moduleParameterChanged(param) {
+		if (param.name == "numberOfScenes" || param.name == "numberOfTracks"){
+		for (var n = 1; n <= trackcount; n++) {
+		local.parameters.advice.set(advices[0]) ;
+		trac=local.values.tracks.removeContainer("Track "+n); }
+		for (var m = 1; m <= scenecountcount; m++) {
+		trac=local.values.tracks.removeContainer("scene "+m); }
+		}  
 }
 
 // =====================================================================
@@ -158,12 +167,17 @@ function moduleParameterChanged(param) {
 
 function moduleValueChanged(value) {
 
+
 // >>>>> Syncing and/or Resetting Clip-Names   
   	if (value.name == "syncClipInfos"){   				
 		for (var n = 0; n < trackcount; n++) {
 		for (var m = 0; m < scenecount; m++) {
 		local.send("/live/clip/get/name", [n,m]); } } 	}
 		
+/*		if (value.name == "syncClipInfos"){ 
+		local.send("/live/track/get/clips/name" , "*" ) ; }
+*/	
+	
 	if (value.name == "resetClipInfos"){   				
 		for (var n = 0; n < trackcount; n++) {
 		var no = n + 1 ;
@@ -308,8 +322,8 @@ function oscEvent(address, args) {
  		local.send("/live/song/get/scene_names");}
  		if (address == "/live/song/get/scene_names") {
  		var no = id + 1 ;
- 		var nam = ""+no+" - "+args[id] ;
- 		local.values.selectedScene.set(nam);
+ 		var val = ""+no+" - "+args[id] ;
+ 		local.values.selectedScene.set(val);
  		 }
  	
 
@@ -439,6 +453,7 @@ function oscEvent(address, args) {
 	for (var n = 0; n < trackcount; n++) {	
 	var no = n+1 ;
 	var addr = "/live/clip/get/name" ;
+//	var addr = "/live/track/get/clips/name" ;
 	if (address == addr) {	
 	if (args[0] == n) {	
 	for (var m = 0; m < scenecount; m++) {

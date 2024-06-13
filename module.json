@@ -44,8 +44,10 @@
 				 
 		"Advice":
 			{ "type": "String",
-			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed these values !",
-			"default":"Reload the Session after changing these values !" },
+			"multiline" : true,
+			"readonly" : true , 
+			"description":"When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !",
+			"default":"When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" },
 				
 		"Number of Tracks":
 			{ "type": "Integer",
@@ -55,7 +57,10 @@
 		"Number of Scenes":
 			{ "type": "Integer",
 			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
-			"min": 4 }
+			"min": 4 },
+			
+		"Test":
+			{ "type": "String" }
 	},
 	
 	"scripts": ["live.js"],
@@ -458,14 +463,13 @@
 						"Midi Track" : "create_midi_track" } },		
 				"New Track ID": {
 					"type": "Integer",
-					"default": 1, 
+					"default": 0, 
 					"min":0,				
 					"useForMapping": true	},
 				"Advice": {
 					"type": "String",
 					"default": "0 : adds Track at the end!" } }
 			},
-
 			
 		"New Aux Track" : {
 			"menu" : "Actions",
