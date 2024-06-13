@@ -501,28 +501,6 @@
 					"default": 1, 
 					"min":1,				
 					"useForMapping": true	} }
-			},
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-		
-	
-
-		
-	
-		
-	
-		
+			}		
 	}
 }
