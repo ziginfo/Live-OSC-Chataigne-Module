@@ -1,6 +1,7 @@
 ## Live-OSC-Chataigne-Module
 controls Ableton-Live via OSC and Chataigne 
 
+This Module has been tested on Ableton-Live-Suite 11; but may run also on other versions (not yet tested !)    
 To get this OSC-Module run correctly, you must first donwload and install the free [LiveOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!   
 The Chataigne Module will be shown under the Menu "Software" and its name is "Live OSC Advanced".
  
