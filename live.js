@@ -31,6 +31,16 @@ function init() {
 // 			CREATE CONTAINERS
 // =====================================================================
 
+/*
+// >>>>>> TESTINGS !!
+	test=local.values.addContainer("test");
+	test.addFloatParameter("red", "", 0,0,1);
+	test.addFloatParameter("green", "", 0,0,1);
+	test.addFloatParameter("blue", "", 0,0,1);
+	test.addTrigger("send" , "" , false);
+	test.addColorParameter("Color", "Color of Track",[0,0,0]);
+*/
+
 	sync = local.values.addTrigger("Sync All" , "Request values from Live !!" , false);
 	stopAll = local.values.addTrigger("Stop All Feedback" , "Stop All Feedback" , false);
 	syncClips = local.values.clips.addTrigger("Sync Clip Infos" , "Request Clip Infos from Live !!" , false);
@@ -167,6 +177,14 @@ function moduleParameterChanged(param) {
 
 function moduleValueChanged(value) {
 
+/*
+// >>>>>>>>Tests
+	if (value.name == "send" || value.name == "red" || value.name == "green" || value.name == "blue"  ){
+	var r =  local.values.test.red.get() ;
+	var g =  local.values.test.green.get() ;
+	var b =  local.values.test.blue.get() ;
+	local.values.test.color.set(r,g,b);}
+*/
 
 // >>>>> Syncing and/or Resetting Clip-Names   
   	if (value.name == "syncClipInfos"){   				
@@ -521,6 +539,21 @@ function send(no, send, val){
 		no = no - 1;
 		send = send -1 ; 
 	local.send("/live/track/set/send", [no, send, val]);	
+}
+
+function tr_name(no, name){
+		no = no - 1; 
+	local.send("/live/track/set/name", [no, name]);	
+}
+
+function tr_color(no, col){
+		no = no - 1; 
+	local.send("/live/track/set/color", [no, col]);	
+}
+
+function tr_col_id(no, col){
+		no = no - 1; 
+	local.send("/live/track/set/color_index", [no, col]);	
 }
 
 function play() {

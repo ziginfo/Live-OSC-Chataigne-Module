@@ -204,6 +204,100 @@
 					"useForMapping": true	} } 
 			},
 			
+		"Track Name" : {
+			"menu" : "Track",
+			"callback" : "tr_name",
+			"parameters" : {
+						
+				"Track Id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true },
+					
+				"Name": {
+					"type": "String" 	}	} 
+			},
+			
+		"Track Color" : {
+			"menu" : "Track",
+			"callback" : "tr_color",
+			"parameters" : {
+						
+				"Track Id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true	},
+					
+				"Color" : {
+					"type":"Enum",
+					"options": {
+ 						"amber" : 13872497,
+						"azur" : 5538020,
+						"blue green" : 695438,
+						"blue" : 3101346,
+						"bright cyan" : 1698303,
+						"bright green" : 4047616,
+						"brown" : 7491393,
+						"cold white" : 12173795,
+						"dark salmon" : 11481907,
+						"dark turquoise" : 2319236,
+						"darker grey" : 8092539,
+						"deep grey" : 3947580,
+						"deep blue" : 1716118,
+						"deep green" : 8754719,
+						"dirt green" : 10927616,
+						"fire red" : 14837594,
+						"green grey" : 10208397,
+						"grey" : 11119017,
+						"light azur" : 1090798,
+						"light brown" : 12026454,
+						"light green" : 1769263,
+						"light grey" : 10851765,
+						"light magenta" : 13381230,
+						"light ocher" : 12565097,
+						"light pink" : 16749734,
+						"light spring" : 2490280,
+						"light yellow" : 16249980,
+						"lighter cyan" : 9611263,
+						"lighter purple" : 11442405,
+						"lightest cyan" : 9160191,
+						"orange" : 16149507,
+						"orange" : 16753961,
+						"pale green" : 8962746,
+						"pink" : 15029152,
+						"purple1" : 11958214,
+						"purple2" : 16726484,
+						"red" : 16725558,
+						"salmon" : 12349846,
+						"straw" : 12243060,
+						"turquoise" : 32192,
+						"violet" : 6441901,
+						"white" : 16777215,
+						"yellow green" : 8912743,
+						"yellow" : 16773172 } } }
+			},
+			
+		"Track Color Index" : {
+			"menu" : "Track",
+			"callback" : "tr_col_id",
+			"parameters" : {
+						
+				"Track Id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true },
+					
+				"Color Id (0-69)": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"max" : 69,
+					"useForMapping": true } }
+			},
+			
 		"Fire Clip" : {
 			"menu" : "Clips",
 			"callback" : "fire_clip",
@@ -501,6 +595,8 @@
 					"default": 1, 
 					"min":1,				
 					"useForMapping": true	} }
-			}		
+			}
+	
+		
 	}
 }
