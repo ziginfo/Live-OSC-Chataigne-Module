@@ -25,6 +25,7 @@ There is a SyncButton (called "Update Chataigne Settings") to automatically adju
 This module will grow up with more features.    
 Please contact me if you have any suggestions, demands or requests and any help is always welcome !!   
 Have Fun 
+
 Special Thanks to [Daniel Jones](https://github.com/ideoforms) who wrote essentially the Python library calle AbletonOSC   
 Special Thanks to [Dan Hemerlein](https://github.com/danhemerlein), who encoded the Ableton Live Color Palette    
 
