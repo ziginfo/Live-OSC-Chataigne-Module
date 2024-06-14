@@ -6,7 +6,8 @@ var trackcount = local.parameters.numberOfTracks.get() ;
 var scenecount = local.parameters.numberOfScenes.get() ;
 var markercount = 12 ;
 var mark = [] ;
-var id ;
+var id = 0 ;
+var colorid ;
 
 var advices = ["When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" , "Save and Reload the Session after Update!"] ;
 
@@ -175,7 +176,8 @@ function moduleParameterChanged(param) {
 		if (param.name == "numberOfScenes" || param.name == "numberOfTracks"){
 		for (var n = 1; n <= trackcount; n++) {
 		local.parameters.advice.set(advices[0]) ;
-		trac=local.values.tracks.removeContainer("Track "+n); }
+		trac=local.values.tracks.removeContainer("Track "+n);
+		trac=local.values.clips.removeContainer("Track "+n+" Clips");}
 		for (var m = 1; m <= scenecountcount; m++) {
 		trac=local.values.tracks.removeContainer("scene "+m); }
 		}  
@@ -191,10 +193,7 @@ function moduleParameterChanged(param) {
 // =====================================================================
 
 function moduleValueChanged(value) {
-
 		script.log("Values changed : "+value.name) ;
-
-
 
 // Show ColorID Name and Hex-Color
 	if (value.name == "colorId"){
@@ -203,8 +202,6 @@ function moduleValueChanged(value) {
 		var nam = livecolors[id].name;
 		local.values.infos.colorName.set(nam);
 		local.values.infos.color.set(col);}
-
-	
 
 // >>>>> Syncing and/or Resetting Clip-Names   
   	if (value.name == "syncClipInfos"){   				
@@ -364,7 +361,6 @@ function oscEvent(address, args) {
  		local.values.selectedScene.set(val);
  		 }
  	
-
 // >>> Song Time 	
  	if (address == "/live/song/get/beat") {
  		var beats = args[0] + 1  ;
@@ -380,7 +376,6 @@ function oscEvent(address, args) {
 // >>> Number of Tracks
  	if (address == "/live/song/get/num_tracks") {
  		local.values.infos.allTracks.set(args[0]);}	
-
 
 //  >>>>>>>> INSERT TRACK VALUES <<<<<<<<<<<<	
 
