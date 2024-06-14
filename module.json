@@ -57,10 +57,7 @@
 		"Number of Scenes":
 			{ "type": "Integer",
 			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
-			"min": 4 },
-			
-		"Test":
-			{ "type": "String" }
+			"min": 4 }
 	},
 	
 	"scripts": ["live.js"],
@@ -290,7 +287,7 @@
 					"min":1,
 					"useForMapping": true },
 					
-				"Color Id (0-69)": {
+				"Color Id ()": {
 					"type": "Integer",
 					"default": 0, 
 					"min":0,
