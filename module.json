@@ -4,7 +4,7 @@
 	"path": "Software",
 	
 	"version": "1.3.3",
-	"description": "Controls Live with Chataigne via OSC",
+	"description": "Controls Ableton Live with Chataigne via OSC",
 	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
 	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
 	
