@@ -2,7 +2,7 @@
 controls Ableton-Live via OSC and Chataigne 
 
 This Module has been tested on Ableton-Live-Suite 11; but may run also on other versions (not yet tested !)    
-To get this OSC-Module run correctly, you must first donwload and install the free [LiveOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!   
+To get this OSC-Module run correctly, you must first donwload and install the free [AbletonOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!   
 The Chataigne Module will be shown under the Menu "Software" and its name is "Live OSC Advanced".
  
 This module is an extended "advanced" version of the basic Ableton-Live-Module which is already integrated in Chataigne . I wrote this extended script to have more Control on Ableton Live and getting more Feedback from the DAW. If you don't need all these "full" features use the basic module instead. It has much less Data-Traffic and so it'll be much faster, especially when using many other modules and mappings in your Chataigne Project.....
