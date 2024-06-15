@@ -5,13 +5,14 @@ This Module has been tested on Ableton-Live-Suite 11; but may run also on other 
 To get this OSC-Module run correctly, you must first donwload and install the free [AbletonOSC](https://github.com/ideoforms/AbletonOSC) Remote-Script and than activate it in Ableton Live !!   
 The Chataigne Module will be shown under the Menu "Software" and its name is "Live OSC Advanced".
  
-This module is an extended "advanced" version of the basic Ableton-Live-Module which is already integrated in Chataigne . I wrote this extended script to have more Control on Ableton Live and getting more Feedback from the DAW. If you don't need all these "full" features use the basic module instead. It has much less Data-Traffic and so it'll be much faster, especially when using many other modules and mappings in your Chataigne Project.....
+There is already a basic Ableton-Live-Module in the Chataigne's Modules-Menu (based on another Max4Live-OSC Plugin) . I wrote this extended script to have more Control on Ableton Live and getting more Feedback from the DAW. If you don't need all these "full" features use the basic module instead. It has much less Data-Traffic and so it'll be much faster, especially when using many other modules and mappings in your Chataigne Project.... Please be aware that you must choose the basic OR the advanced Module and activate only the concerned OSC-Driver as they are not compatible to run both at the same time on a Live-Session !    
 
-This Advanced module is still in developpement and I could add some more features and actions if needed. Just contact me for that ! Ableton-Live is quite complexe to remote and there are hundreds of possible Remote Actions and Feedback.   
-BUT : this module is based on an Python library that has been written by another person :  [ideoforms](https://github.com/ideoforms) .   So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
-for example it is still not possible to "fire" Scenes by OSC-remote. Many other users requested this feature and hopefully, ideoforms will add it in the future.       
+This Advanced module here is still in developpement and I can add some more features and actions if needed. Just contact me for that ! Ableton-Live is quite complexe to remote and there are hundreds of possible Remote Actions and Feedback.   
+BUT : this module is based on an Python library that has been written by another person :  [Daniel Jones](https://github.com/ideoforms) .   So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
+for example it is still not possible to "fire" Scenes by OSC-Remote with this Library. Many other users requested this feature and hopefully, ideoforms will add it in the future.       
     
-### Actual Version is 1.3     
+### Actual Version is 1.4
+I just updated it and added some more features, as Markers Feedback and Color Features (all 70 Ableton Colors are now available for Actions as well as for Feedback !)     
 ##### Please read carefully the following advices :   
 After changing the Number of shown Channels and Clips/Scenes you must save the Chataigne session (cmd-S) and than reload it (cmd-shift-O)    
 Channel Names, Faders and Meters are shown and noticed in the same order as they are arranged and indexed in the Albeton-Live-Mixer !! This means that when you change a channel's place (move it to the left or the right) in the Live-Mixer, it is possible that the changes are NOT immediatly reflected in Chataigne, and in any case you must reset and resync the Data in Chataigne (I added some Trigger-Buttons for that)...    
@@ -24,9 +25,9 @@ There is a SyncButton (called "Update Chataigne Settings") to automatically adju
 
 This module will grow up with more features.    
 Please contact me if you have any suggestions, demands or requests and any help is always welcome !!   
-Have Fun 
+Have Fun   
 
-Special Thanks to [Daniel Jones](https://github.com/ideoforms) who wrote essentially the Python Library for the Remote Script, called AbletonOSC.   
+Special Thanks to [Daniel Jones](https://github.com/ideoforms) who wrote essentially the Python library for the Remote Script called AbletonOSC.   
 Special Thanks to [Dan Hemerlein](https://github.com/danhemerlein), who encoded the Ableton Live Color Palette.    
 
 To learn more about Chataigne, please visit : http://benjamin.kuperberg.fr/chataigne/    
