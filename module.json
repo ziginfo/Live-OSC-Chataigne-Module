@@ -60,8 +60,9 @@
 			
 		"Number of Markers":
 			{ "type": "Integer",
+			"readonly" : true ,
 			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
-			"min": 1 },
+			"min": 0  },
 			
 		"Set to Default":
 			{ "type": "Trigger"}

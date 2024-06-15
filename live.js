@@ -105,7 +105,6 @@ function init() {
 		scene.addTrigger("Reset Scenes", "Reset All Labels" , false);	
 		for (var n = 1; n <= scenecount; n++) {
 			scene.addStringParameter("Scene "+n, "", "");  }
-
 			
 //Markers Container >>>>>>>>>>>>>>>>>>>>>>		
 		mark=local.values.addContainer("Markers");
@@ -116,7 +115,6 @@ function init() {
 			mark.addStringParameter("Marker "+n, "", "");
 			var read = mark.addIntParameter("Beat M"+n, "", "");
 			read.setAttribute("readonly" ,true);   }
-
 			
 //Track Labels Container >>>>>>>>>>>>>>>>>>>>>>		
 		label=local.values.addContainer("Track Labels");
