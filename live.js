@@ -76,6 +76,7 @@ function init() {
 			read.setAttribute("readonly" ,true);
 		var read=trac.addFloatParameter("Pan","", 0 , -1, 1);
 			read.setAttribute("readonly" ,true);
+//		trac.addEnumParameter("Type", "Type", "Audio" , 1, "Midi" , 2, "Return" , 3) ;
 		var read=trac.addBoolParameter("Mute", "", false);
 			read.setAttribute("readonly" ,true);
 		var read=trac.addBoolParameter("Solo", "", false);
@@ -83,7 +84,10 @@ function init() {
 		var read=trac.addBoolParameter("Armed", "", false);
 			read.setAttribute("readonly" ,true);
 		var read=trac.addBoolParameter("Grouped", "", false);
+			read.setAttribute("readonly" ,true);	
+		var read=trac.addBoolParameter("Is Group", "", false);
 			read.setAttribute("readonly" ,true);	}
+		
 			
 // Clips Container >>>>>>>>>>>>>>>>>>>>>>
 		for (var n = 1; n <= trackcount; n++) {
@@ -149,7 +153,7 @@ function init() {
 		info.setCollapsed(true);
 		info.addTrigger("Sync All", "Click to Sync All Feedback from the Live-Session !!" , false);
 //		info.addTrigger("Reset Infos", "Reset Infos" , false);	
-		info.addStringParameter("Project Name", "","");
+		info.addFloatParameter("Average CPU Load", "", 0);
 			var read =info.addBoolParameter("Song is Playing", "Shows if the Song is Playing or not",false);
 			read.setAttribute("readonly" ,true);
 		info.addTrigger("Stop Songtime", "", false);
@@ -254,12 +258,14 @@ function moduleValueChanged(value) {
   		local.send("/live/track/start_listen/mute", "*") ;
   		local.send("/live/track/start_listen/solo", "*") ;
   		local.send("/live/track/start_listen/arm", "*") ;
+  		local.send("/live/track/get/is_foldable", "*"); 
   		local.send("/live/view/start_listen/selected_track") ;
   		local.send("/live/view/start_listen/selected_scene") ;
-//  		local.send("/live/song/start_listen/is_playing") ;
+//  	local.send("/live/song/start_listen/is_playing") ;
 		local.send("/live/song/start_listen/beat");
 		for (var n = 0; n < trackcount; n++) {
-		local.send("/live/track/get/is_grouped", n); } 
+		local.send("/live/track/get/is_grouped", n);
+		} 
   	}
 // >>>>> Set Tempo  	
   	if (value.name == "setNewTempo"){
@@ -340,13 +346,14 @@ function moduleValueChanged(value) {
 		var child = "Track"+no ;
 		local.values.tracks.getChild(child).label.set("");
 		local.values.tracks.getChild(child).color.set(0,0,0);
-		local.values.tracks.getChild(child).meter.set(0);
+//		local.values.tracks.getChild(child).meter.set(0);
 		local.values.tracks.getChild(child).fader.set(0);
 		local.values.tracks.getChild(child).pan.set(0);
 		local.values.tracks.getChild(child).mute.set(0);
 		local.values.tracks.getChild(child).solo.set(0);
 		local.values.tracks.getChild(child).armed.set(0);
 		local.values.tracks.getChild(child).grouped.set(0);
+		local.values.tracks.getChild(child).isGroup.set(0);
 	} }
       
 }
@@ -357,6 +364,11 @@ function moduleValueChanged(value) {
 
 function oscEvent(address, args) {
 
+// >>> Average CPU Load
+	if (address == "/live/application/get/average_process_usage") {
+//	 		 var cpu = (Math.round(10 * args[0])) / 10 ;
+	 		local.values.infos.averageCPULoad.set(args[0]) ; }
+	 		
 // >>> Song is Playing ??
  	if (address == "/live/song/get/is_playing") {
  		local.values.infos.songIsPlaying.set(args[0]);
@@ -496,7 +508,16 @@ function oscEvent(address, args) {
 	if (address == addr)
 	{if (args[0] == n)
 	 {	local.values.tracks.getChild('Track'+no).grouped.set(args[1]); } }
-	}		
+	}
+// >>> insert is_group	
+	for (var n = 0; n < trackcount; n++) {
+	var no = n+1 ;
+	var addr = "/live/track/get/is_foldable" ;
+	if (address == addr)
+	{if (args[0] == n)
+	 {	local.values.tracks.getChild('Track'+no).isGroup.set(args[1]); } }
+	}	
+		
 // >>> insert Meter Value	
 	for (var n = 0; n < trackcount; n++) {
 	var no = n+1 ;
@@ -534,7 +555,8 @@ function update(deltaTime) {
 }
 
  function keepAlive() {
- 		local.send("/live/song/get/is_playing") ;
+ 		local.send("/live/song/get/is_playing");
+ 		local.send("/live/application/get/average_process_usage");
 	}
 
 // =====================================================================
@@ -707,6 +729,30 @@ function rename_clip (track,clip, name) {
 track= track-1;
 clip= clip-1;
 local.send("/live/clip/set/name", [track , clip , name]);
+}
+
+function dupli_loop (track,clip) {
+track= track-1;
+clip= clip-1;
+local.send("/live/clip/duplicate_loop", [track , clip]);
+}
+
+function clip_color (track,clip, col) {
+track= track-1;
+clip= clip-1;
+local.send("/live/clip/set/color", [track , clip , col]);
+}
+
+function clip_name (track,clip, name) {
+track= track-1;
+clip= clip-1;
+local.send("/live/clip/set/color", [track , clip , name]);
+}
+
+function clip_gain (track,clip, gain) {
+track= track-1;
+clip= clip-1;
+local.send("/live/clip/set/gain", [track , clip , gain]);
 }
 
 //  =================  Song Actions  ===================

@@ -239,8 +239,7 @@
 					"type":"Enum",
 					"options": {
  						"amber" : 13872497,
-						"blue1" : 5538020,
-						"blue2" : 3101346,
+						"blue" : 5538020,
 						"blue green" : 695438,
 						"bright cyan" : 1698303,
 						"bright green" : 4047616,
@@ -277,6 +276,7 @@
 						"purple2" : 16726484,
 						"red" : 16725558,
 						"salmon" : 12349846,
+						"slate blue" : 3101346,
 						"turquoise" : 32192,
 						"violet" : 6441901,
 						"white" : 16777215,
@@ -376,6 +376,116 @@
 				"New Name": {
 					"type": "String",
 					"default": "new name", 				
+					"useForMapping": true	} }
+			},
+			
+		"Duplicate Loop" : {
+			"menu" : "Clips",
+			"callback" : "dupli_loop",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	} }
+			},
+			
+		"Set Clip Color" : {
+			"menu" : "Clips",
+			"callback" : "clip_color",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":0,				
+					"useForMapping": true	},
+					
+				"Color" : {
+					"type":"Enum",
+					"options": {
+ 						"amber" : 13872497,
+						"blue" : 5538020,						
+						"blue green" : 695438,
+						"bright cyan" : 1698303,
+						"bright green" : 4047616,
+						"brown" : 7491393,
+						"cold white" : 12173795,
+						"dark salmon" : 11481907,
+						"dark turquoise" : 2319236,
+						"darker grey" : 8092539,
+						"deep grey" : 3947580,
+						"deep blue" : 1716118,
+						"deep green" : 8754719,
+						"dirt green" : 10927616,
+						"fire red" : 14837594,
+						"green grey" : 10208397,
+						"greenish" : 12243060,
+						"grey" : 11119017,
+						"light azur" : 1090798,
+						"light brown" : 12026454,
+						"light green" : 1769263,
+						"light grey" : 10851765,
+						"light magenta" : 13381230,
+						"light ocher" : 12565097,
+						"light pink" : 16749734,
+						"light spring" : 2490280,
+						"light yellow" : 16249980,
+						"lighter cyan" : 9611263,
+						"lighter purple" : 11442405,
+						"lightest cyan" : 9160191,
+						"orange" : 16149507,
+						"orange" : 16753961,
+						"pale green" : 8962746,
+						"pink" : 15029152,
+						"purple1" : 11958214,
+						"purple2" : 16726484,
+						"red" : 16725558,
+						"salmon" : 12349846,
+						"slate blue" : 3101346,
+						"turquoise" : 32192,
+						"violet" : 6441901,
+						"white" : 16777215,
+						"yellow green" : 8912743,
+						"yellow" : 16773172 } } }
+			},
+				
+			
+		"Set Clip Gain" : {
+			"menu" : "Clips",
+			"callback" : "clip_gain",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Clip id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,				
+					"useForMapping": true	},
+					
+				"Gain (0.4 = 0db)": {
+					"type": "Float",
+					"default": 0.4, 
+					"min": 0,
+					"max": 1,				
 					"useForMapping": true	} }
 			},
 			
