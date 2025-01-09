@@ -11,7 +11,7 @@ This Advanced module here is still in developpement and I can add some more feat
 BUT : this module is based on an Python library that has been written by another person :  [Daniel Jones](https://github.com/ideoforms) .   So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
 for example it is still not possible to "fire" Scenes by OSC-Remote with this Library. Many other users requested this feature and hopefully, ideoforms will add it in the future.       
     
-### Actual Version is 1.4
+### Actual Version is 1.4.5
 I just updated it and added some more features, as Marker Feedback and Color Features (all 70 Ableton Colors are now available for Actions as well as for Feedback !). Added also Feedback for "Average CPU Load" ...        
 ##### Please read carefully the following advices :   
 After changing the Number of shown Channels and Clips/Scenes you must save the Chataigne session (cmd-S) and than reload it (cmd-shift-O)    
