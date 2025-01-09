@@ -1,6 +1,6 @@
-//====================================================================
+//====================================
 //			VARIABLES 
-//====================================================================
+//====================================
 
 var trackcount = local.parameters.numberOfTracks.get() ;
 var scenecount = local.parameters.numberOfScenes.get() ;
@@ -27,15 +27,15 @@ var colors = {
 var livecolors = [ 
 {"id": 0,"col": 1,"row": 1,"hex": 0xFFFD95A7,"rgb": { "r": 255, "g": 153, "b": 170 },"name": "indian red"},{"id": 1,"col": 2,"row": 1,"hex": 0xFFFDA43A,"rgb": { "r": 255, "g": 160, "b": 62 },"name": "orange"},{"id": 2,"col": 3,"row": 1,"hex": 0xFFCB9834,"rgb": { "r": 204, "g": 153, "b": 51 },"name": "dark amber"},{"id": 3,"col": 4,"row": 1,"hex": 0xFFF7F384,"rgb": { "r": 247, "g": 235, "b": 131 },"name": "green yellow"},{"id": 4,"col": 5,"row": 1,"hex": 0xFFC0F932,"rgb": { "r": 192, "g": 251, "b": 45 },"name": "spring green"},{"id": 5,"col": 6,"row": 1,"hex": 0xFF32FD42,"rgb": { "r": 45, "g": 254, "b": 84 },"name": "lawn green"},{"id": 6,"col": 7,"row": 1,"hex": 0xFF39FDAA,"rgb": { "r": 54, "g": 255, "b": 154 },"name": "light green"},{"id": 7,"col": 8,"row": 1,"hex": 0xFF65FEE8,"rgb": { "r": 85, "g": 255, "b": 238 },"name": "aqua"},{"id": 8,"col": 9,"row": 1,"hex": 0xFF8DC6FD,"rgb": { "r": 136, "g": 204, "b": 255 },"name": "cornflower blue"},{"id": 9,"col": 10,"row": 1,"hex": 0xFF5682E1,"rgb": { "r": 85, "g": 136, "b": 221 },"name": "blue"},{"id": 10,"col": 11,"row": 1,"hex": 0xFF93A9FC,"rgb": { "r": 153, "g": 170, "b": 255 },"name": "turquoise"},{"id": 11,"col": 12,"row": 1,"hex": 0xFFD670E2,"rgb": { "r": 221, "g": 119, "b": 221 },"name": "fuchsia"},{"id": 12,"col": 13,"row": 1,"hex": 0xFFE3569F,"rgb": { "r": 221, "g": 85, "b": 153 },"name": "pink"},{"id": 13,"col": 14,"row": 1,"hex": 0xFFFFFFFF,"rgb": { "r": 255, "g": 255, "b": 255 },"name": "white"},{"id": 14,"col": 1,"row": 2,"hex": 0xFFFC393D,"rgb": { "r": 255, "g": 64, "b": 64 },"name": "red"},{"id": 15,"col": 2,"row": 2,"hex": 0xFFF46C20,"rgb": { "r": 244, "g": 113, "b": 30 },"name": "fire"},{"id": 16,"col": 3,"row": 2,"hex": 0xFF98714E,"rgb": { "r": 151, "g": 111, "b": 76 },"name": "saddle brown"},{"id": 17,"col": 4,"row": 2,"hex": 0xFFFEEE4A,"rgb": { "r": 255, "g": 236, "b": 71 },"name": "yellow"},{"id": 18,"col": 5,"row": 2,"hex": 0xFF8BFD70,"rgb": { "r": 140, "g": 253, "b": 126 },"name": "chartreuse"},{"id": 19,"col": 6,"row": 2,"hex": 0xFF44C121,"rgb": { "r": 70, "g": 203, "b": 24 },"name": "green"},{"id": 20,"col": 7,"row": 2,"hex": 0xFF1EBEAF,"rgb": { "r": 36, "g": 188, "b": 168 },"name": "teal"},{"id": 21,"col": 8,"row": 2,"hex": 0xFF31E9FD,"rgb": { "r": 34, "g": 238, "b": 255 },"name": "cyan"},{"id": 22,"col": 9,"row": 2,"hex": 0xFF22A5EB,"rgb": { "r": 36, "g": 160, "b": 237 },"name": "light blue"},{"id": 23,"col": 10,"row": 2,"hex": 0xFF127EBE,"rgb": { "r": 14, "g": 129, "b": 185 },"name": "dark slate blue"},{"id": 24,"col": 11,"row": 2,"hex": 0xFF8870E1,"rgb": { "r": 147, "g": 112, "b": 219 },"name": "rebecca purple"},{"id": 25,"col": 12,"row": 2,"hex": 0xFFB579C4,"rgb": { "r": 168, "g": 125, "b": 194 },"name": "orchid"},{"id": 26,"col": 13,"row": 2,"hex": 0xFFFD42D2,"rgb": { "r": 255, "g": 72, "b": 208 },"name": "magenta"},{"id": 27,"col": 14,"row": 2,"hex": 0xFFD0D0D0,"rgb": { "r": 208, "g": 208, "b": 208 },"name": "light grey"},{"id": 28,"col": 1,"row": 3,"hex": 0xFFE0685D,"rgb": { "r": 218, "g": 101, "b": 94 },"name": "light brown"},{"id": 29,"col": 2,"row": 3,"hex": 0xFFFDA378,"rgb": { "r": 255, "g": 161, "b": 119 },"name": "light salmon"},{"id": 30,"col": 3,"row": 3,"hex": 0xFFD2AC75,"rgb": { "r": 211, "g": 173, "b": 119 },"name": "peru"},{"id": 31,"col": 4,"row": 3,"hex": 0xFFEDFEB2,"rgb": { "r": 238, "g": 255, "b": 170 },"name": "pale gold"},{"id": 32,"col": 5,"row": 3,"hex": 0xFFD2E39C,"rgb": { "r": 213, "g": 230, "b": 157 },"name": "peach"},{"id": 33,"col": 6,"row": 3,"hex": 0xFFBACF79,"rgb": { "r": 188, "g": 203, "b": 122 },"name": "dark khaki"},{"id": 34,"col": 7,"row": 3,"hex": 0xFF9CC38F,"rgb": { "r": 154, "g": 191, "b": 141 },"name": "olive sand"},{"id": 35,"col": 8,"row": 3,"hex": 0xFFD5FDE2,"rgb": { "r": 208, "g": 247, "b": 228 },"name": "white smoke"},{"id": 36,"col": 9,"row": 3,"hex": 0xFFCEF1F8,"rgb": { "r": 209, "g": 240, "b": 246 },"name": "lavender"},{"id": 37,"col": 10,"row": 3,"hex": 0xFFB9C2E2,"rgb": { "r": 187, "g": 197, "b": 226 },"name": "silver"},{"id": 38,"col": 11,"row": 3,"hex": 0xFFCDBCE3,"rgb": { "r": 204, "g": 187, "b": 227 },"name": "pink"},{"id": 39,"col": 12,"row": 3,"hex": 0xFFAE9AE3,"rgb": { "r": 168, "g": 153, "b": 230 },"name": "medium purple"},{"id": 40,"col": 13,"row": 3,"hex": 0xFFE5DCE1,"rgb": { "r": 229, "g": 218, "b": 225 },"name": "beige"},{"id": 41,"col": 14,"row": 3,"hex": 0xFFA9A9A9,"rgb": { "r": 169, "g": 168, "b": 169 }, "name": "grey"},{"id": 42,"col": 1,"row": 4,"hex": 0xFFC5928C,"rgb": { "r": 194, "g": 150, "b": 139 },"name": "rosy brown"},{"id": 43,"col": 2,"row": 4,"hex": 0xFFB68259,"rgb": { "r": 180, "g": 131, "b": 91 },"name": "wood"},{"id": 44,"col": 3,"row": 4,"hex": 0xFF98836B,"rgb": { "r": 155, "g": 133, "b": 107 },"name": "grey brown"},{"id": 45,"col": 4,"row": 4,"hex": 0xFFBFB96E,"rgb": { "r": 189, "g": 183, "b": 107 },"name": "burly wood"},{"id": 46,"col": 5,"row": 4,"hex": 0xFFA6BC25,"rgb": { "r": 164, "g": 191, "b": 32 },"name": "yellow green"},{"id": 47,"col": 6,"row": 4,"hex": 0xFF7EAF52,"rgb": { "r": 122, "g": 171, "b": 85 },"name": "olive"},{"id": 48,"col": 7,"row": 4,"hex": 0xFF8AC2BA,"rgb": { "r": 137, "g": 193, "b": 186 }, "name": "medium turquoise"},{"id": 49,"col": 8,"row": 4,"hex": 0xFF9CB3C3,"rgb": { "r": 158, "g": 178, "b": 195 },"name": "light steel"},{"id": 50,"col": 9,"row": 4,"hex": 0xFF86A5C1,"rgb": { "r": 136, "g": 163, "b": 194 },"name": "dark sky"},{"id": 51,"col": 10,"row": 4,"hex": 0xFF8494CA,"rgb": { "r": 131, "g": 152, "b": 202 },"name": "royal blue"},{"id": 52,"col": 11,"row": 4,"hex": 0xFFA596B4,"rgb": { "r": 171, "g": 146, "b": 179 },"name": "dark silver"},{"id": 53,"col": 12,"row": 4,"hex": 0xFFBEA0BD,"rgb": { "r": 190, "g": 156, "b": 193 },"name": "slate grey"},{"id": 54,"col": 13,"row": 4,"hex": 0xFFBB7296,"rgb": { "r": 187, "g": 119, "b": 150 },"name": "hot pink"},{"id": 55,"col": 14,"row": 4,"hex": 0xFF7B7B7B,"rgb": { "r": 123, "g": 124, "b": 125 }, "name": "dark grey"},{"id": 56,"col": 1,"row": 5,"hex": 0xFFAD3436,"rgb": { "r": 172, "g": 50, "b": 53 },"name": "brown"},{"id": 57,"col": 2,"row": 5,"hex": 0xFFA75135,"rgb": { "r": 168, "g": 83, "b": 53 },"name": "fire brick"},{"id": 58,"col": 3,"row": 5,"hex": 0xFF714F42,"rgb": { "r": 114, "g": 80, "b": 66 },"name": "dark brown"},{"id": 59,"col": 4,"row": 5,"hex": 0xFFDAC229,"rgb": { "r": 213, "g": 188, "b": 38 },"name": "gold amber"},{"id": 60,"col": 5,"row": 5,"hex": 0xFF85952B,"rgb": { "r": 140, "g": 150, "b": 50 },"name": "dark olive"},{"id": 61,"col": 6,"row": 5,"hex": 0xFF559E38,"rgb": { "r": 85, "g": 153, "b": 51 },"name": "dark green"},{"id": 62,"col": 7,"row": 5,"hex": 0xFF1B9B8E,"rgb": { "r": 18, "g": 156, "b": 139 },"name": "dark cyan"},{"id": 63,"col": 8,"row": 5,"hex": 0xFF266383,"rgb": { "r": 34, "g": 101, "b": 127 },"name": "dark teal"},{"id": 64,"col": 9,"row": 5,"hex": 0xFF1B3393,"rgb": { "r": 34, "g": 51, "b": 153 },"name": "navy blue"},{"id": 65,"col": 10,"row": 5,"hex": 0xFF3154A0,"rgb": { "r": 51, "g": 85, "b": 153 },"name": "deep blue"},{"id": 66,"col": 11,"row": 5,"hex": 0xFF624EAB,"rgb": { "r": 89, "g": 70, "b": 178 },"name": "slate blue"},{"id": 67,"col": 12,"row": 5,"hex": 0xFFA24EAB,"rgb": { "r": 154, "g": 78, "b": 174 },"name": "blue violet"},{"id": 68,"col": 13,"row": 5,"hex": 0xFFCA326E,"rgb": { "r": 207, "g": 45, "b": 113 },"name": "dark pink"},{"id": 69,"col": 14,"row": 5,"hex": 0xFF3C3C3C,"rgb": { "r": 60, "g": 59, "b": 60 },"name": "deep grey"} ] ;
 
-//====================================================================
+//====================================
 //			INITIAL FUNCTIONS 
-//====================================================================
+//====================================
 
 function init() {
 
-// =====================================================================
+//====================================
 // 			CREATE CONTAINERS
-// =====================================================================
+//====================================
 
 /*
 // >>>>>> TESTINGS !!
@@ -60,7 +60,7 @@ function init() {
 //	metersOff = local.values.addTrigger("Stop Meters" , "Stop All Feedback" , false);
 	songtimeOff = local.values.addTrigger("Stop Songtime" , "Stop Songtime Feedback" , false);
 	songplaying = local.values.addBoolParameter("Song is Playing", "Shows if the Song is Playing or not",false);
-	songplaying.setAttribute("readonly" ,true);
+	songplaying.setAttribute("readOnly" ,true);
 		
 // Track Items Container >>>>>>>>>>>>>>>>>>>>>>
 		local.values.tracks.addTrigger("Sync All" , "Click to Sync All Feedback from the Live-Session !!" , false);
@@ -71,22 +71,22 @@ function init() {
 		trac.addColorParameter("Color", "Color of Track",[0,0,0]);
 		trac.addStringParameter("Label", "", "");
 //		var read=trac.addFloatParameter("Meter", "", 0, 0, 1);
-//			read.setAttribute("readonly" ,true);
+//			read.setAttribute("readOnly" ,true);
 		var read=trac.addFloatParameter("Fader", "", 0, 0, 1);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
 		var read=trac.addFloatParameter("Pan","", 0 , -1, 1);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
 //		trac.addEnumParameter("Type", "Type", "Audio" , 1, "Midi" , 2, "Return" , 3) ;
 		var read=trac.addBoolParameter("Mute", "", false);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
 		var read=trac.addBoolParameter("Solo", "", false);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
 		var read=trac.addBoolParameter("Armed", "", false);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
 		var read=trac.addBoolParameter("Grouped", "", false);
-			read.setAttribute("readonly" ,true);	
+			read.setAttribute("readOnly" ,true);	
 		var read=trac.addBoolParameter("Is Group", "", false);
-			read.setAttribute("readonly" ,true);	}
+			read.setAttribute("readOnly" ,true);	}
 		
 			
 // Clips Container >>>>>>>>>>>>>>>>>>>>>>
@@ -118,7 +118,7 @@ function init() {
 		for (var n = 1; n <= markercount/2; n++) {
 			mark.addStringParameter("Marker "+n, "", "");
 			var read = mark.addIntParameter("Beat M"+n, "", "");
-			read.setAttribute("readonly" ,true);   }
+			read.setAttribute("readOnly" ,true);   }
 			
 //Track Labels Container >>>>>>>>>>>>>>>>>>>>>>		
 		label=local.values.addContainer("Track Labels");
@@ -136,7 +136,7 @@ function init() {
 		faders.addTrigger("Reset Values", "Reset All Values" , false);		
 		for (var n = 1; n <= trackcount; n++) {
 			var fade = faders.addFloatParameter("Fader "+n, "", 0, 0, 1);
-			fade.setAttribute("readonly" ,true);  }
+			fade.setAttribute("readOnly" ,true);  }
 			
 // Channel Meters Container>>>>>>>>>>>>>>>>>>>>>		
 		meter = local.values.addContainer("Meters");
@@ -145,40 +145,44 @@ function init() {
 		meter.addTrigger("Stop Meters" , "Stop All Feedback" , false);
 		for (var n = 1; n <= trackcount; n++) {
 			var met = meter.addFloatParameter("Track "+n, "", 0, 0, 1);
-			met.setAttribute("readonly" ,true);  
+			met.setAttribute("readOnly" ,true);  
 			}
 			
 // Session Info>>>>>>>>>>>>>>>>>>>>>		
 		info = local.values.addContainer("Infos");
 		info.setCollapsed(true);
-		info.addTrigger("Sync All", "Click to Sync All Feedback from the Live-Session !!" , false);
+		info.addTrigger("Sync All", "Click to Request and Sync All Feedback from the Live-Session !!" , false);
 //		info.addTrigger("Reset Infos", "Reset Infos" , false);	
-		info.addFloatParameter("Average CPU Load", "", 0);
-			var read =info.addBoolParameter("Song is Playing", "Shows if the Song is Playing or not",false);
-			read.setAttribute("readonly" ,true);
+			var read = info.addFloatParameter("Average CPU Load", "", 0);
+			read.setAttribute("ui", "label") ;
+			read.setAttribute("readOnly" ,true);
+			var read = info.addBoolParameter("Song is Playing", "Shows if the Song is Playing or not",false);
+			read.setAttribute("readOnly" ,true);
 		info.addTrigger("Stop Songtime", "", false);
-		info.addIntParameter("Song Time Beats", "Beats", 0);
-		info.addIntParameter("Song Time Measure", "Measure", 0);
+			var read = info.addIntParameter("Song Time Beats", "Beats", 0);
+			read.setAttribute("readOnly" ,true);
+			var read = info.addIntParameter("Song Time Measure", "Measure", 0);
+			read.setAttribute("readOnly" ,true);
 			var read = info.addIntParameter("Tempo", "Tempo", 1);
-			read.setAttribute("readonly" ,true);
-			var read = info.addIntParameter("All Tracks", "All Tracks",1);
-			read.setAttribute("readonly" ,true);
-			var read = info.addIntParameter("All Scenes", "All Scenes",1);
-			read.setAttribute("readonly" ,true);
-			var read = info.addIntParameter("All Markers", "All Markers",1);
-			read.setAttribute("readonly" ,true);
+			read.setAttribute("readOnly" ,true);
+			var read = info.addIntParameter("All Tracks", "Requests the number of all Tracks !",0);
+			read.setAttribute("readOnly" ,true);
+			var read = info.addIntParameter("All Scenes", "Requests the number of all Scenes !",0);
+			read.setAttribute("readOnly" ,true);
+			var read = info.addIntParameter("All Markers", "Requests the number of all Markers !",0);
+			read.setAttribute("readOnly" ,true);
 		info.addTrigger("Update Chataigne Settings", "This Trigger will set the Number of shown Tracks and Scenes in the Values-Tab to the number shown above - that is the actual used number of Tracks and Scenes in the Ableton-Live-Session !!", false);
 		info.addStringParameter("Advice", "Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed thess values !", "Save and Reload the Session after Update!");
 		info.addIntParameter("Color id", "color id", 0,0,69);
-		info.addColorParameter("Color", "Shows the Live Color",[0,0,0]);
+		info.addColorParameter("Color", "Shows the Live Colors from Palette !",[0,0,0]);
 		info.addStringParameter("Color Name", "Color Name","Color Name");
 		
 
 }
 
-// =====================================================================
+//====================================
 // 			PARAM CHANGES
-// =====================================================================
+//====================================
 
 function moduleParameterChanged(param) {
 
@@ -200,9 +204,9 @@ function moduleParameterChanged(param) {
 		
 }
 
-// =====================================================================
+//============================================
 // 			VALUE CHANGES -> RESET etc...
-// =====================================================================
+//============================================
 
 function moduleValueChanged(value) {
 		script.log("Values changed : "+value.name) ;
@@ -246,25 +250,21 @@ function moduleValueChanged(value) {
   		local.send("/live/song/get/num_scenes") ;
   		local.send("/live/song/get/tempo") ;}
 // >>>>> Sync All  	
-  	if (value.name == "syncAll"){ 
-  		local.send("/live/song/get/tempo") ;
-  		local.send("/live/song/get/num_tracks") ; 
-  		local.send("/live/song/get/num_scenes") ;
-  		local.send("/live/song/get/cue_points") ;
+  	if (value.name == "syncAll"){  		
   		local.send("/live/track/start_listen/name", "*") ;
   		local.send("/live/track/start_listen/color", "*") ;
   		local.send("/live/track/start_listen/volume", "*") ;
   		local.send("/live/track/start_listen/panning", "*") ;
   		local.send("/live/track/start_listen/mute", "*") ;
   		local.send("/live/track/start_listen/solo", "*") ;
-  		local.send("/live/track/start_listen/arm", "*") ;
-  		local.send("/live/track/get/is_foldable", "*"); 
+  		local.send("/live/track/start_listen/arm", "*") ;  		 
   		local.send("/live/view/start_listen/selected_track") ;
   		local.send("/live/view/start_listen/selected_scene") ;
 //  	local.send("/live/song/start_listen/is_playing") ;
 		local.send("/live/song/start_listen/beat");
 		for (var n = 0; n < trackcount; n++) {
 		local.send("/live/track/get/is_grouped", n);
+		local.send("/live/track/get/is_foldable", n);
 		} 
   	}
 // >>>>> Set Tempo  	
@@ -358,9 +358,9 @@ function moduleValueChanged(value) {
       
 }
 
-//============================================================
+//====================================
 //			OSC EVENTS
-//============================================================
+//====================================
 
 function oscEvent(address, args) {
 
@@ -543,9 +543,9 @@ function oscEvent(address, args) {
 		
 }
 
-//========================================================================
+//====================================
 //					KEEP ALIVE
-//========================================================================
+//====================================
 
 function update(deltaTime) {
 	var now = util.getTime();
@@ -557,15 +557,19 @@ function update(deltaTime) {
  function keepAlive() {
  		local.send("/live/song/get/is_playing");
  		local.send("/live/application/get/average_process_usage");
+ 		local.send("/live/song/get/num_tracks") ; 
+  		local.send("/live/song/get/num_scenes") ;
+  		local.send("/live/song/get/cue_points") ;
+  		local.send("/live/song/get/tempo") ;
 	}
 
-// =====================================================================
+//====================================
 // 			GENERIC FUNCTIONS
-// =====================================================================
+//====================================
 
-// ____________________________________________
-// >>>>>> Generic Functions <<<<<<<<<<<<<<<
-// ____________________________________________
+// ___________________________________
+// >>>>>> Generic Functions <<<<<<<<<<
+// ___________________________________
 
 //===========TRACKS ================
 function master_volume(val) {
@@ -618,6 +622,23 @@ function tr_col_id(no, col){
 	local.send("/live/track/set/color_index", [no, col]);	
 }
 
+//=========== Device Actions=========
+function select_device(no, dev){
+		no = no - 1; 
+	local.send("/live/view/set/selected_device", [no, dev]);	
+}
+
+function param_device(no, dev, val){
+		no = no - 1; 
+	local.send("/live/device/set/parameter/value", [no, dev, val]);	
+}
+
+function string_param(no, dev, val){
+		no = no - 1; 
+	local.send("/live/device/set/parameter/value_string", [no, dev, val]);	
+}
+
+//===========Song Actions=========
 function play() {
 	local.send("/live/song/start_playing");
 }
@@ -652,43 +673,6 @@ function taptempo() {
 
 function metronome(val) {
 	local.send("/live/song/set/metronome", val);
-}
-function bank_back() {
-	local.send("/device/track/bank/-");
-}
-
-function bank_next() {
-	local.send("/device/track/bank/+");
-}
-
-function bank_sel(no) {
-	local.send("/device/track/bank/select/"+no) ;
-}
-
-function track_back() {
-	local.send("/device/track/-");
-	local.send("/reaper/track/follows/device");
-}
-
-function track_next() {
-	local.send("/device/track/+");
-	local.send("/reaper/track/follows/device");
-}
-
-function preset_next(no, fx) {
-	local.send("/track/"+no+"/fx/"+fx+"/preset+");
-}
-
-function preset_prev(no, fx) {
-	local.send("/track/"+no+"/fx/"+fx+"/preset-");
-}
-
-function fx_drywet(no, fx, val) {
-	local.send("/track/"+no+"/fx/"+fx+"/wetdry", val);
-}
-
-function fx_bypass (no, fx, val) {
-	local.send("/track/"+no+"/fx/"+fx+"/bypass", val);
 }
 
 //  =================  Clips and Scenes ===================

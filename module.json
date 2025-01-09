@@ -3,7 +3,7 @@
 	"type": "OSC",
 	"path": "Software",
 	
-	"version": "1.4",
+	"version": "1.4.5",
 	"description": "Controls Live with Chataigne via OSC",
 	"url":"https://github.com/ziginfo/Live-OSC-Chataigne-Module",
 	"downloadURL": "https://github.com/ziginfo/Live-OSC-Chataigne-Module/archive/refs/heads/main.zip",
@@ -44,14 +44,14 @@
 		"Advice":
 			{ "type": "String",
 			"multiline" : true,
-			"readonly" : true , 
-			"description":"When the following settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !",
+			"readOnly" : true , 
+			"description":"When the following settings have been changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !",
 			"default":"When the following settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" },
 				
 		"Number of Tracks":
 			{ "type": "Integer",
 			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
-			"min": 8 },
+			"min": 4 },
 			
 		"Number of Scenes":
 			{ "type": "Integer",
@@ -60,7 +60,7 @@
 			
 		"Number of Markers":
 			{ "type": "Integer",
-			"readonly" : true ,
+			"readOnly" : true ,
 			"description":"Please Save (cmd-S) and Reload (cmd-shift-O) the Session once you have changed this value !",
 			"min": 0  },
 			
@@ -71,7 +71,7 @@
 	"scripts": ["live.js"],
 	
 	"values":  { 
-	
+			
 		"Tracks":
 		{ "type":"Container",
 			"collapsed":true},
@@ -301,6 +301,85 @@
 					"min":0,
 					"max" : 69,
 					"useForMapping": true } }
+			},
+			
+		"Set Selected Device" : {
+			"menu" : "Device",
+			"callback" : "select_device",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true },
+				"Device id": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"useForMapping": true }	} 
+			},
+			
+		"Set Device Parameter" : {
+			"menu" : "Device",
+			"callback" : "param_device",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true },
+				"Device id": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"useForMapping": true },
+				"Parameter id": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"useForMapping": true },
+				"Value": {
+					"type": "Float",
+					"useForMapping": true }	} 
+			},
+			
+		"Set String Parameter" : {
+			"menu" : "Device",
+			"callback" : "string_param",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true },
+				"Device id": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"useForMapping": true },
+				"Parameter id": {
+					"type": "Integer",
+					"default": 0, 
+					"min":0,
+					"useForMapping": true },
+				"Value": {
+					"type": "String",
+					"useForMapping": true }	} 
+			},
+			
+		"Set Selected Track" : {
+			"menu" : "Device",
+			"callback" : "select",
+			"parameters" : {
+						
+				"Track id": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"useForMapping": true }	} 
 			},
 			
 		"Fire Clip" : {
