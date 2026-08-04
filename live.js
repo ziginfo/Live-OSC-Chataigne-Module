@@ -570,7 +570,7 @@ function update(deltaTime) {
 
 //===========TRACKS ================
 function master_volume(val) {
-	local.send("/master/volume", val);
+	local.send("/live/track/set/volume", [-1, val]);
 }
 
 function volume(no, val) {
