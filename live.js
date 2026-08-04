@@ -11,6 +11,7 @@ var col = 0xFF000000;
 var nam = "";
 var colorid ;
 var TSSendAlive = 0 ;
+var selectedSceneIndex = -1 ;
 
 var advices = ["When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" , "Save and Reload the Session after Update!"] ;
 
@@ -229,8 +230,9 @@ function moduleValueChanged(value) {
 */	
 
 // >>>>> Sync Scenes 	
- 	if (value.name == "syncScenes"){ 
-  		local.send("/live/song/get/scene_names") ; }
+ 	if (value.name == "syncScenes"){
+  		for (var n = 0; n < scenecount; n++) {
+  		local.send("/live/scene/get/name", n) ; } }
   		
 // >>>>> Sync Markers 	
  	if (value.name == "syncMarkers"){ 
@@ -386,12 +388,8 @@ function oscEvent(address, args) {
  		
 // >>> Selected Scene
  	if (address == "/live/view/get/selected_scene") {
- 		id = args[0];
- 		local.send("/live/song/get/scene_names");}
- 		if (address == "/live/song/get/scene_names") {
- 		var no = id + 1 ;
- 		var val = ""+no+" - "+args[id] ;
- 		local.values.selectedScene.set(val); }
+ 		selectedSceneIndex = args[0];
+ 		local.send("/live/scene/get/name", args[0]);}
  	
 // >>> Song Time 	
  	if (address == "/live/song/get/beat") {
@@ -428,12 +426,12 @@ function oscEvent(address, args) {
 	}  } } } }
 
 // >>> insert Scene Labels	
-	for (var n = 0; n < scenecount; n++) {
-	var no = n+1 ;
-	var addr = "/live/song/get/scene_names" ;
-	if (address == addr){
-	var arg = args[n] ;
-	local.values.scenes.getChild("scene"+no).set(arg) ; }  }
+	if (address == "/live/scene/get/name") {
+	var sid = args[0] ;
+	var sno = sid + 1 ;
+	local.values.scenes.getChild("scene"+sno).set(args[1]) ;
+	if (sid == selectedSceneIndex) {
+	local.values.selectedScene.set(sno + " - " + args[1]) ; } }
 
 // >>> insert Marker Labels	
 	if (address == "/live/song/get/cue_points") {
