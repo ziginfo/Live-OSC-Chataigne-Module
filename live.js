@@ -194,9 +194,7 @@ function moduleParameterChanged(param) {
 		local.parameters.advice.set(advices[0]) ;
 		trac=local.values.tracks.removeContainer("Track "+n);
 		trac=local.values.clips.removeContainer("Track "+n+" Clips");}
-		for (var m = 1; m <= scenecountcount; m++) {
-		trac=local.values.tracks.removeContainer("scene "+m); }
-		}  
+		}
 		
 		if (param.name == "setToDefault") {
 		local.parameters.numberOfTracks.set(8);
