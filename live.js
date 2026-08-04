@@ -166,6 +166,8 @@ function init() {
 			read.setAttribute("readOnly" ,true);
 			var read = info.addIntParameter("Song Time Measure", "Measure", 0);
 			read.setAttribute("readOnly" ,true);
+			var read = info.addIntParameter("Song Time Bar Beat", "Beat number within the current measure (1-4)", 1);
+			read.setAttribute("readOnly" ,true);
 			var read = info.addIntParameter("Tempo", "Tempo", 1);
 			read.setAttribute("readOnly" ,true);
 			var read = info.addIntParameter("All Tracks", "Requests the number of all Tracks !",0);
@@ -275,9 +277,10 @@ function moduleValueChanged(value) {
   		local.send("/live/song/set/tempo", temp) ; }
 // >>>>> Stop Songtime  	
   	if (value.name == "stopSongtime"){ 
-  		local.send("/live/song/stop_listen/beat") ;  
+  		local.send("/live/song/stop_listen/beat") ;
 		local.values.infos.songTimeMeasure.set(1);
 		local.values.infos.songTimeBeats.set(1);
+		local.values.infos.songTimeBarBeat.set(1);
 	}
 // >>>>> Sync Scenes and Tracks Number  	
   	if (value.name == "updateChataigneSettings"){
@@ -396,8 +399,10 @@ function oscEvent(address, args) {
  	if (address == "/live/song/get/beat") {
  		var beats = args[0] + 1 ;                  // total beats from start (1-based)
 		var meas  = Math.floor(args[0] / 4) + 1 ;  // current measure (4/4)
+		var barBeat = (args[0] % 4) + 1 ;          // beat within the bar 1-4 (4/4)
 		local.values.infos.songTimeMeasure.set(meas);
-		local.values.infos.songTimeBeats.set(beats);}
+		local.values.infos.songTimeBeats.set(beats);
+		local.values.infos.songTimeBarBeat.set(barBeat);}
  	
 // >>> Number of Scenes
  	if (address == "/live/song/get/num_scenes") {
