@@ -665,6 +665,7 @@ function click() {
 }
 
 function rewind() {
+	// NOTE: does not actually rewind - only resumes playback (same as resume_play).
 	local.send("/live/song/continue_playing");
 }
 
