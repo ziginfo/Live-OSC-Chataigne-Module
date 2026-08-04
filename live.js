@@ -394,10 +394,8 @@ function oscEvent(address, args) {
  	
 // >>> Song Time 	
  	if (address == "/live/song/get/beat") {
- 		var beats = args[0] + 1  ;
-		var meas = (args[0] + 4) / 4 ;
-//		var calc = local.values.infos.songTimeMeasure.get()  ;
-//		beats =  beats - ((calc - 1) * 4);  
+ 		var beats = args[0] + 1 ;                  // total beats from start (1-based)
+		var meas  = Math.floor(args[0] / 4) + 1 ;  // current measure (4/4)
 		local.values.infos.songTimeMeasure.set(meas);
 		local.values.infos.songTimeBeats.set(beats);}
  	
