@@ -731,7 +731,7 @@ local.send("/live/clip/set/color", [track , clip , col]);
 function clip_name (track,clip, name) {
 track= track-1;
 clip= clip-1;
-local.send("/live/clip/set/color", [track , clip , name]);
+local.send("/live/clip/set/name", [track , clip , name]);
 }
 
 function clip_gain (track,clip, gain) {
