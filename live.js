@@ -220,10 +220,10 @@ function moduleValueChanged(value) {
 		local.values.infos.color.set(col);}
 
 // >>>>> Syncing and/or Resetting Clip-Names   
-  	if (value.name == "syncClipInfos"){   				
+  	if (value.name == "syncClipInfos"){
 		for (var n = 0; n < trackcount; n++) {
 		for (var m = 0; m < scenecount; m++) {
-		local.send("/live/clip/get/name", [n,m]); } } 	}
+		local.send("/live/clip_slot/get/has_clip", [n,m]); } } 	}
 		
 /*		if (value.name == "syncClipInfos"){ 
 		local.send("/live/track/get/clips/name" , "*" ) ; }
@@ -494,7 +494,19 @@ function oscEvent(address, args) {
 //	local.values.tracks.getChild('track'+no).meter.set(args[1]);
 	} }
 	
-// >>> insert Clip Names	
+// >>> clip slot has_clip -> only request the name for filled slots
+// (asking /live/clip/get/name on an empty slot makes AbletonOSC error:
+//  'NoneType' object has no attribute 'name')
+	if (address == "/live/clip_slot/get/has_clip") {
+	if (args[0] >= 0 && args[0] < trackcount && args[1] >= 0 && args[1] < scenecount) {
+	if (args[2]) {
+	local.send("/live/clip/get/name", [args[0], args[1]]);
+	} else {
+	var no = args[0] + 1 ;
+	var mo = args[1] + 1 ;
+	local.values.clips.getChild('track'+no+'Clips').getChild('clip'+mo).set(""); } } }
+
+// >>> insert Clip Names
 	if (address == "/live/clip/get/name") {
 	if (args[0] >= 0 && args[0] < trackcount && args[1] >= 0 && args[1] < scenecount) {
 	var no = args[0] + 1 ;
