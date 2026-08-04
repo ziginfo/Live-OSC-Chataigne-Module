@@ -299,7 +299,6 @@ function moduleValueChanged(value) {
  		local.send("/live/track/stop_listen/output_meter_level", "*");
  		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		var child = "fader"+no ;
 		local.values.meters.getChild('Track'+no).set(0);
 	}  }
 // >>>>> Reset Labels 	  	
@@ -327,7 +326,6 @@ function moduleValueChanged(value) {
 	if (value.name == "resetValues"){ 
   		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		var child = "fader"+no ;
 		local.values.trackVolumes.getChild('Fader'+no).set(0);
 		local.values.meters.getChild('Track'+no).set(0);
 	} }
