@@ -299,20 +299,20 @@ function moduleValueChanged(value) {
  		local.send("/live/track/stop_listen/output_meter_level", "*");
  		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		local.values.meters.getChild('Track'+no).set(0);
+		local.values.meters.getChild('track'+no).set(0);
 	}  }
 // >>>>> Reset Labels 	  	
   	if (value.name == "resetLabels"){ 
   		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		local.values.trackLabels.getChild('Label'+no).set("");
+		local.values.trackLabels.getChild('label'+no).set("");
 //		local.values.trackLabels.getChild('Color'+no).set(""); 
 	} }
 // >>>>> Reset Scenes 	  	
   	if (value.name == "resetScenes"){ 
   		for (var n = 0; n < scenecount; n++) {
 		var no = n+1 ;
-		local.values.scenes.getChild('Scene'+no).set("");
+		local.values.scenes.getChild('scene'+no).set("");
 	} }
 // >>>>> Reset Markers 	  	
   	if (value.name == "resetMarkers"){ 
@@ -326,8 +326,8 @@ function moduleValueChanged(value) {
 	if (value.name == "resetValues"){ 
   		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		local.values.trackVolumes.getChild('Fader'+no).set(0);
-		local.values.meters.getChild('Track'+no).set(0);
+		local.values.trackVolumes.getChild('fader'+no).set(0);
+		local.values.meters.getChild('track'+no).set(0);
 	} }
 	
 // >>>>> Reset Clip Infos	
@@ -336,13 +336,13 @@ function moduleValueChanged(value) {
 		var no = n + 1 ;
 		for (var m = 0; m < scenecount; m++) {
 		var mo = m + 1 ;
-		local.values.clips.getChild('Track'+no+'Clips').getChild('clip'+mo).set("");} } }
+		local.values.clips.getChild('track'+no+'Clips').getChild('clip'+mo).set("");} } }
 		
 // >>>>> Reset  All Track Infos	
 	if (value.name == "resetTrackInfos"){ 
   		for (var n = 0; n < trackcount; n++) {
 		var no = n+1 ;
-		var child = "Track"+no ;
+		var child = "track"+no ;
 		local.values.tracks.getChild(child).label.set("");
 		local.values.tracks.getChild(child).color.set(0,0,0);
 //		local.values.tracks.getChild(child).meter.set(0);
@@ -417,7 +417,7 @@ function oscEvent(address, args) {
 	var r = colors[items[c]][1] ;
 	var g = colors[items[c]][2] ;
 	var b = colors[items[c]][3] ;
-	local.values.tracks.getChild('Track'+no).color.set(r,g,b);
+	local.values.tracks.getChild('track'+no).color.set(r,g,b);
 	}  } } }
 
 // >>> insert Scene Labels	
@@ -447,51 +447,51 @@ function oscEvent(address, args) {
 	if (address == "/live/track/get/name") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.trackLabels.getChild('Label'+no).set(args[1]);
-	local.values.tracks.getChild('Track'+no).label.set(args[1]); } }
+	local.values.trackLabels.getChild('label'+no).set(args[1]);
+	local.values.tracks.getChild('track'+no).label.set(args[1]); } }
 // >>> insert Fader Volume	
 	if (address == "/live/track/get/volume") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.trackVolumes.getChild("Fader"+no).set(args[1]);
-	local.values.tracks.getChild('Track'+no).fader.set(args[1]); } }
+	local.values.trackVolumes.getChild("fader"+no).set(args[1]);
+	local.values.tracks.getChild('track'+no).fader.set(args[1]); } }
 // >>> insert Pan	
 	if (address == "/live/track/get/panning") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).pan.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).pan.set(args[1]); } }
 // >>> insert Mute	
 	if (address == "/live/track/get/mute") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).mute.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).mute.set(args[1]); } }
 // >>> insert Solo	
 	if (address == "/live/track/get/solo") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).solo.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).solo.set(args[1]); } }
 // >>> insert Arm	
 	if (address == "/live/track/get/arm") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).armed.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).armed.set(args[1]); } }
 // >>> insert is_grouped	
 	if (address == "/live/track/get/is_grouped") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).grouped.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).grouped.set(args[1]); } }
 // >>> insert is_group	
 	if (address == "/live/track/get/is_foldable") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
-	local.values.tracks.getChild('Track'+no).isGroup.set(args[1]); } }
+	local.values.tracks.getChild('track'+no).isGroup.set(args[1]); } }
 		
 // >>> insert Meter Value	
 	if (address == "/live/track/get/output_meter_level") {
 	if (args[0] >= 0 && args[0] < trackcount) {
 	var no = args[0] + 1 ;
 	local.values.meters.getChild("track"+no).set(args[1]);
-//	local.values.tracks.getChild('Track'+no).meter.set(args[1]);
+//	local.values.tracks.getChild('track'+no).meter.set(args[1]);
 	} }
 	
 // >>> insert Clip Names	
@@ -499,7 +499,7 @@ function oscEvent(address, args) {
 	if (args[0] >= 0 && args[0] < trackcount && args[1] >= 0 && args[1] < scenecount) {
 	var no = args[0] + 1 ;
 	var mo = args[1] + 1 ;
-	local.values.clips.getChild('Track'+no+'Clips').getChild('clip'+mo).set(args[2]); } }
+	local.values.clips.getChild('track'+no+'Clips').getChild('clip'+mo).set(args[2]); } }
 		
 }
 
