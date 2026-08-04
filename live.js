@@ -12,6 +12,7 @@ var nam = "";
 var colorid ;
 var TSSendAlive = 0 ;
 var selectedSceneIndex = -1 ;
+var selectedTrackIndex = -1 ;
 
 var advices = ["When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" , "Save and Reload the Session after Update!"] ;
 
@@ -380,9 +381,11 @@ function oscEvent(address, args) {
  		
 // >>> Selected Track
  	if (address == "/live/view/get/selected_track") {
+ 		selectedTrackIndex = args[0];
  		local.send("/live/track/get/name",args[0]); }
  	if (address == "/live/track/get/name") {
- 		local.values.selectedTrack.set(args[1]);}
+ 		if (args[0] == selectedTrackIndex) {
+ 		local.values.selectedTrack.set(args[1]); } }
  		
 // >>> Selected Scene
  	if (address == "/live/view/get/selected_scene") {
