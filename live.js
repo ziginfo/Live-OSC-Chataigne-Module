@@ -10,6 +10,7 @@ var id = 0 ;
 var col = 0xFF000000;
 var nam = "";
 var colorid ;
+var TSSendAlive = 0 ;
 
 var advices = ["When these settings are changed, please 'Save' the Session (cmd-S) and than 'Reload' it again (cmd-shift-O) !" , "Save and Reload the Session after Update!"] ;
 
