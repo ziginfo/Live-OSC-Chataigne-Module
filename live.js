@@ -409,21 +409,18 @@ function oscEvent(address, args) {
 
 //  >>>>> INSERT TRACK VALUES <<<<<<<	
 // >>> insert Track Color	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/color" ;
-	if (address == addr) {
-	if (args[0] == n){
-	var col = args[1] ;	
+	if (address == "/live/track/get/color") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	var col = args[1] ;
 	var items = util.getObjectProperties(colors);
-	var val3 = colors[items[3]][0] ;
 	for (var c = 0; c < items.length; c++) {
 	if (colors[items[c]][0] == col) {
 	var r = colors[items[c]][1] ;
 	var g = colors[items[c]][2] ;
 	var b = colors[items[c]][3] ;
 	local.values.tracks.getChild('Track'+no).color.set(r,g,b);
-	}  } } } }
+	}  } } }
 
 // >>> insert Scene Labels	
 	if (address == "/live/scene/get/name") {
@@ -449,94 +446,62 @@ function oscEvent(address, args) {
 		}  }
 	
 // >>> insert Track Labels	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/name" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.trackLabels.getChild('Label'+no).set(args[1]);
-	 	local.values.tracks.getChild('Track'+no).label.set(args[1]); } }
-	}	
+	if (address == "/live/track/get/name") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.trackLabels.getChild('Label'+no).set(args[1]);
+	local.values.tracks.getChild('Track'+no).label.set(args[1]); } }
 // >>> insert Fader Volume	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/volume" ;
-	if (address == addr) 
-	{if (args[0] == n)
-	{	local.values.trackVolumes.getChild("Fader"+no).set(args[1]);
-		local.values.tracks.getChild('Track'+no).fader.set(args[1]);} }
-	}	
+	if (address == "/live/track/get/volume") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.trackVolumes.getChild("Fader"+no).set(args[1]);
+	local.values.tracks.getChild('Track'+no).fader.set(args[1]); } }
 // >>> insert Pan	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/panning" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).pan.set(args[1]); } }
-	}	
+	if (address == "/live/track/get/panning") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).pan.set(args[1]); } }
 // >>> insert Mute	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/mute" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).mute.set(args[1]); } }
-	}	
+	if (address == "/live/track/get/mute") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).mute.set(args[1]); } }
 // >>> insert Solo	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/solo" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).solo.set(args[1]); } }
-	}
+	if (address == "/live/track/get/solo") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).solo.set(args[1]); } }
 // >>> insert Arm	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/arm" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).armed.set(args[1]); } }
-	}
+	if (address == "/live/track/get/arm") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).armed.set(args[1]); } }
 // >>> insert is_grouped	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/is_grouped" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).grouped.set(args[1]); } }
-	}
+	if (address == "/live/track/get/is_grouped") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).grouped.set(args[1]); } }
 // >>> insert is_group	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/is_foldable" ;
-	if (address == addr)
-	{if (args[0] == n)
-	 {	local.values.tracks.getChild('Track'+no).isGroup.set(args[1]); } }
-	}	
+	if (address == "/live/track/get/is_foldable") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.tracks.getChild('Track'+no).isGroup.set(args[1]); } }
 		
 // >>> insert Meter Value	
-	for (var n = 0; n < trackcount; n++) {
-	var no = n+1 ;
-	var addr = "/live/track/get/output_meter_level" ;
-	if (address == "/live/track/get/output_meter_level")
-	{if (args[0] == n)
-	{	local.values.meters.getChild("track"+no).set(args[1]);
-//		local.values.tracks.getChild('Track'+no).meter.set(args[1]);
-	} } }
+	if (address == "/live/track/get/output_meter_level") {
+	if (args[0] >= 0 && args[0] < trackcount) {
+	var no = args[0] + 1 ;
+	local.values.meters.getChild("track"+no).set(args[1]);
+//	local.values.tracks.getChild('Track'+no).meter.set(args[1]);
+	} }
 	
 // >>> insert Clip Names	
-	for (var n = 0; n < trackcount; n++) {	
-	var no = n+1 ;
-	var addr = "/live/clip/get/name" ;
-//	var addr = "/live/track/get/clips/name" ;
-	if (address == addr) {	
-	if (args[0] == n) {	
-	for (var m = 0; m < scenecount; m++) {
-	if (args[1] == m) { 
-	var mo = m + 1 ;
-	local.values.clips.getChild('Track'+no+'Clips').getChild('clip'+mo).set(args[2]);} } 	
-	}  }  }		
+	if (address == "/live/clip/get/name") {
+	if (args[0] >= 0 && args[0] < trackcount && args[1] >= 0 && args[1] < scenecount) {
+	var no = args[0] + 1 ;
+	var mo = args[1] + 1 ;
+	local.values.clips.getChild('Track'+no+'Clips').getChild('clip'+mo).set(args[2]); } }
 		
 }
 
