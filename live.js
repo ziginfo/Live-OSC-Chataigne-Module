@@ -664,7 +664,7 @@ function click() {
 	local.send("/click");
 }
 
-function rwind() {
+function rewind() {
 	local.send("/live/song/continue_playing");
 }
 
