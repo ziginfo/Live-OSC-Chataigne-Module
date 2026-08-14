@@ -11,8 +11,9 @@ This Advanced module here is still in developpement and I can add some more feat
 BUT : this module is based on an Python library that has been written by another person :  [Daniel Jones](https://github.com/ideoforms) .   So I could only use what is already available in the Python-Script, and there are still some lacks, unfortunately !    
 for example it is still not possible to "fire" Scenes by OSC-Remote with this Library. Many other users requested this feature and hopefully, ideoforms will add it in the future.       
     
-### Actual Version is 1.4.5
-I just updated it and added some more features, as Marker Feedback and Color Features (all 70 Ableton Colors are now available for Actions as well as for Feedback !). Added also Feedback for "Average CPU Load" ...        
+### Actual Version is 1.4.6.  
+Last Updates : thanks to [vk0eppel](https://github.com/vk0eppel)we did some cleaning in the code and he addes some new features ! A big Thanks and Thumbs-Up !!    
+In V 1.4.5 it and added some more features, as Marker Feedback and Color Features (all 70 Ableton Colors are now available for Actions as well as for Feedback !). Added also Feedback for "Average CPU Load" ...        
 ##### Please read carefully the following advices :   
 After changing the Number of shown Channels and Clips/Scenes you must save the Chataigne session (cmd-S) and than reload it (cmd-shift-O)    
 Channel Names, Faders and Meters are shown and noticed in the same order as they are arranged and indexed in the Albeton-Live-Mixer !! This means that when you change a channel's place (move it to the left or the right) in the Live-Mixer, it is possible that the changes are NOT immediatly reflected in Chataigne, and in any case you must reset and resync the Data in Chataigne (I added some Trigger-Buttons for that)...    
